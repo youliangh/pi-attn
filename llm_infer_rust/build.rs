@@ -25,7 +25,7 @@ fn main() {
     let python = env::var("VIRTUAL_ENV")
         .map(|venv| format!("{venv}/bin/python"))
         .unwrap_or_else(|_| "python".to_owned());
-    let output = Command::new(python)
+    let output = Command::new(&python)
         .args([
             "-c",
             "import sys, torch; from pathlib import Path; from torch.utils.cpp_extension import CUDA_HOME, include_paths; sys.exit(2) if not torch.version.cuda or CUDA_HOME is None else None; print(torch.version.cuda); print(int(torch._C._GLIBCXX_USE_CXX11_ABI)); print(Path(torch.__file__).parent / 'lib'); print(*include_paths(device_type='cuda'), sep='\\n')",
@@ -56,7 +56,17 @@ fn main() {
     println!("cargo:rustc-link-lib=dylib=c10_cuda");
     println!("cargo:rustc-cfg=has_cuda_graph");
 
-    let arch = env::var("FLASHINFER_CUDA_ARCH").unwrap_or_else(|_| "80".to_owned());
+    let arch = env::var("FLASHINFER_CUDA_ARCH").unwrap_or_else(|_| {
+        let output = Command::new(&python)
+            .args(["-c", "import torch; print('%d%d' % torch.cuda.get_device_capability())"])
+            .output()
+            .expect("cannot query CUDA architecture; set FLASHINFER_CUDA_ARCH explicitly");
+        assert!(output.status.success(),
+            "cannot query CUDA architecture; set FLASHINFER_CUDA_ARCH (120 for RTX 5070)");
+        String::from_utf8(output.stdout).unwrap().trim().to_owned()
+    });
+    assert!(!arch.is_empty() && arch.bytes().all(|b| b.is_ascii_digit()),
+        "FLASHINFER_CUDA_ARCH must be a numeric SM target");
     let flashinfer_include = env::var("VIRTUAL_ENV").ok().and_then(|venv| {
         fs::read_dir(Path::new(&venv).join("lib"))
             .ok()

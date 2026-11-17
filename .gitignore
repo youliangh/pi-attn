@@ -1,7 +1,10 @@
 env/
+.venv/
+.pytest_cache/
 build/
 results/*.json
 __pycache__/
+*.egg-info/
 models/
 logs/
 results/detcheck/*.json
@@ -17,3 +20,15 @@ results/a800/detcheck/*.json
 
 # nsys GPU-trace exports over 500 MB (kept on disk, too large for GitHub)
 archive/stale_results/engine_profile/*/tr_*_cuda_gpu_trace.csv
+
+# RTX 5070 measurements: keep published summaries, figures and test evidence.
+results/rtx5070/**/*.log
+!results/rtx5070/test_*.log
+!results/rtx5070/rust-cpu.log
+!results/rtx5070/rust-cuda.log
+!results/rtx5070/Qwen*/http-tests.log
+results/rtx5070/Qwen*/references.json
+results/rtx5070/vllm027/*-smoke.json
+results/rtx5070/vllm027/serving/diagnostics/pre-*/
+results/rtx5070/vllm027/serving/Qwen*/**/*.json
+!results/rtx5070/vllm027/serving/Qwen*/pi/offline/trace-kernels.json

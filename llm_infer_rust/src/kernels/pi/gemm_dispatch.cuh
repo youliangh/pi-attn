@@ -70,17 +70,20 @@ inline int kernel_bk(int k) {
 
 // Function attributes are per-kernel, per-device host state: set once per device (outside capture).
 template <typename Kernel>
-void set_smem(Kernel kernel, size_t smem) {
+cudaError_t set_smem(Kernel kernel, size_t smem) {
   static std::mutex mutex;
   static std::map<std::pair<int, const void*>, size_t> done;
   int device = 0;
-  cudaGetDevice(&device);
+  auto err = cudaGetDevice(&device);
+  if (err != cudaSuccess) return err;
   std::lock_guard<std::mutex> lock(mutex);
   auto& v = done[{device, (const void*)kernel}];
   if (v < smem) {
-    cudaFuncSetAttribute(kernel, cudaFuncAttributeMaxDynamicSharedMemorySize, (int)smem);
+    err = cudaFuncSetAttribute(kernel, cudaFuncAttributeMaxDynamicSharedMemorySize, (int)smem);
+    if (err != cudaSuccess) return err;
     v = smem;
   }
+  return cudaSuccess;
 }
 
 // Segment-split launch (ids 54/55): S > 1 shapes only, where it differs from a small kernel.
@@ -89,7 +92,8 @@ cudaError_t run_segsplit(const void* x, int64_t ldx, const void* w, OutT* y, int
                          int segs, int max_smem, cudaStream_t st) {
   const size_t smem = segsplit_smem_bytes<BK, STAGES>(segs);
   if (segs < 2 || smem > (size_t)max_smem) return cudaErrorInvalidValue;
-  set_smem(gemm_segsplit_kernel<OutT, BK, STAGES>, smem);
+  auto err = set_smem(gemm_segsplit_kernel<OutT, BK, STAGES>, smem);
+  if (err != cudaSuccess) return err;
   gemm_segsplit_kernel<OutT, BK, STAGES><<<N / 8, segs * 32, smem, st>>>(
       (const __nv_bfloat16*)x, ldx, (const __nv_bfloat16*)w, y, ldy, M, N, K);
   return cudaGetLastError();
@@ -109,7 +113,9 @@ cudaError_t run_gemm(int k, const void* x, int64_t ldx, const void* w, OutT* y, 
     return cudaErrorInvalidValue;
   auto small = [&](auto kern, int G, int W, int BK = kSmallBK, int ST = kSmallStages) {
     const size_t smem = (size_t)ST * (16 * G + 8 * W) * (BK + 8) * sizeof(__nv_bfloat16);
-    set_smem(kern, smem);
+    if (smem > (size_t)dev.smem_optin) return cudaErrorInvalidValue;
+    auto err = set_smem(kern, smem);
+    if (err != cudaSuccess) return err;
     kern<<<dim3(N / (8 * W), (M + 16 * G - 1) / (16 * G)), W * 32, smem, st>>>(
         (const __nv_bfloat16*)x, ldx, (const __nv_bfloat16*)w, y, ldy, M, N, K, segs);
     return cudaGetLastError();

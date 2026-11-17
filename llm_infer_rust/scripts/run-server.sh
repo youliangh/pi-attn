@@ -2,7 +2,7 @@
 set -euo pipefail
 
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-venv_dir="${VENV_DIR:-${repo_dir}/.venv}"
+venv_dir="${VENV_DIR:-${repo_dir}/../.venv}"
 build_profile="${SGLANG_BUILD_PROFILE:-debug}"
 case "${build_profile}" in
     debug) cargo_profile_args=() ;;
@@ -63,7 +63,7 @@ for arg in "$@"; do
 done
 
 if [[ "${has_model_path}" == false && "${show_help}" == false ]]; then
-    model_path="${MINISGL_MODEL_PATH:-${repo_dir}/../mini-sglang/Qwen/Qwen3-0.6B}"
+    model_path="${MINISGL_MODEL_PATH:-${repo_dir}/../models/Qwen3-0.6B}"
     if [[ ! -f "${model_path}/config.json" ]]; then
         echo "找不到默认模型：${model_path}" >&2
         echo "请使用 --model-path /path/to/model，或设置 MINISGL_MODEL_PATH。" >&2

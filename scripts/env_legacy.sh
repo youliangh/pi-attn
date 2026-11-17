@@ -1,0 +1,27 @@
+# Sourced by ../env.sh to activate the original paper environment.
+export ROOT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+export CUDA_HOME=$ROOT/env/cuda-12.6
+export PATH=$ROOT/env/bin:$ROOT/env/cuda-12.6/bin:$ROOT/env/cargo/bin:$ROOT/env/venv/bin:$PATH
+export RUSTUP_HOME=$ROOT/env/rustup CARGO_HOME=$ROOT/env/cargo
+export VIRTUAL_ENV=$ROOT/env/venv
+export LIBTORCH_USE_PYTORCH=1
+export UV_PYTHON_INSTALL_DIR=$ROOT/env/python UV_CACHE_DIR=$ROOT/env/uv-cache
+export UV_PYTHON_INSTALL_MIRROR=${UV_PYTHON_INSTALL_MIRROR-https://registry.npmmirror.com/-/binary/python-build-standalone}
+export TORCH_LIB=$(ls -d $ROOT/env/venv/lib/python*/site-packages/torch/lib)
+# gcc 13's libstdc++/libgcc_s (env/stdcxx) for JIT-built FlashInfer ops, which need GLIBCXX_3.4.32;
+# older hosts (Ubuntu 20.04 on the A800 box) ship an older libstdc++.
+export LD_LIBRARY_PATH=$TORCH_LIB:$ROOT/env/cuda-12.6/lib64:$ROOT/env/stdcxx${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+export HF_ENDPOINT=${HF_ENDPOINT:-https://hf-mirror.com} HF_HOME=$ROOT/env/hf-home
+export TMPDIR=$ROOT/env/tmp
+# Every cache stays inside the project, never in $HOME (the dev box's home is not shared):
+# pip/sglang/vllm/tvm-ffi (XDG), torch extensions, Triton, CUDA JIT, ModelScope.
+export XDG_CACHE_HOME=$ROOT/env/cache XDG_CONFIG_HOME=$ROOT/env/config
+export TORCH_EXTENSIONS_DIR=$ROOT/env/cache/torch_extensions TRITON_CACHE_DIR=$ROOT/env/cache/triton
+export CUDA_CACHE_PATH=$ROOT/env/cache/nv MODELSCOPE_CACHE=$ROOT/env/cache/modelscope
+export VLLM_CACHE_ROOT=$ROOT/env/cache/vllm
+export CC=$ROOT/env/gcc13/bin/x86_64-conda-linux-gnu-gcc CXX=$ROOT/env/gcc13/bin/x86_64-conda-linux-gnu-g++
+export NVCC_CCBIN=$CXX CUDAHOSTCXX=$CXX
+export FLASHINFER_NVCC=$ROOT/env/bin/nvcc-nocompress FLASHINFER_WORKSPACE_BASE=$ROOT/env/flashinfer-home
+# Host-level CXXFLAGS/CFLAGS (the dev box exports CXXFLAGS=-std=c++17) would override the
+# engine build.rs C++20 flags; builds must not depend on them.
+unset CXXFLAGS CFLAGS NVCC_PREPEND_FLAGS NVCC_APPEND_FLAGS

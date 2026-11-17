@@ -7,10 +7,7 @@ case "$mode" in
     cpu|cuda) ;;
     *) echo "用法：$0 [cpu|cuda]" >&2; exit 2 ;;
 esac
-if [[ "$mode" == cpu ]]; then
-    export CUDA_VISIBLE_DEVICES=""
-fi
-venv_dir="${VENV_DIR:-${repo_dir}/.venv}"
+venv_dir="${VENV_DIR:-${repo_dir}/../.venv}"
 venv_dir="$(cd "$venv_dir" && pwd)"
 export VIRTUAL_ENV="$venv_dir"
 export PATH="${venv_dir}/bin:${PATH}"
@@ -41,7 +38,8 @@ if [[ "$mode" == cuda ]]; then
         cuda_kv_store_preserves_packed_strides_padding_and_unwritten_slots \
         flashinfer_sampling_preserves_support_distribution_and_rng \
         flashinfer_graph_replays_dynamic_pages_lengths_and_padded_batches \
-        pi_prefill_matches_reference_and_decode_bitwise; do
+        pi_prefill_matches_reference_and_decode_bitwise \
+        token_logprobs_match_log_softmax_and_do_not_depend_on_the_batch; do
         if [[ "$catalog" != *"${test_name}: test"* ]]; then
             echo "CUDA 测试未编入：${test_name}；请检查 CUDA toolkit 和 FlashInfer 环境。" >&2
             exit 1
@@ -51,4 +49,5 @@ if [[ "$mode" == cuda ]]; then
 fi
 # Global RNG seeds and graph capture require serial execution in the CUDA suite;
 # keep the same deterministic execution order for the default suite.
-exec cargo "${cargo_args[@]}" -- --test-threads=1
+# Hide GPUs only from the test binaries so build.rs can detect the native SM.
+exec cargo "${cargo_args[@]}" --config 'target."cfg(unix)".runner = ["env", "CUDA_VISIBLE_DEVICES="]' -- --test-threads=1

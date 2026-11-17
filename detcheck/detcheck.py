@@ -54,8 +54,9 @@ def token_ids(seq):
 
 
 class Server:
-    def __init__(self, url, api, logprobs=False, timeout=1200):
+    def __init__(self, url, api, logprobs=False, timeout=1200, flush_chunk_tokens=2048):
         self.url, self.api, self.logprobs, self.timeout = url.rstrip("/"), api, logprobs, timeout
+        self.flush_chunk_tokens = flush_chunk_tokens
 
     def generate(self, ids, max_tokens, sampling=None):
         sp = sampling or {"temperature": 0}
@@ -106,9 +107,9 @@ class Server:
             requests.post(self.url + "/reset_prefix_cache", timeout=60)
         elif how.startswith("flood:"):
             total = int(how.split(":")[1])
-            n = max(1, total // 2048)
+            n = max(1, -(-total // self.flush_chunk_tokens))
             with cf.ThreadPoolExecutor(8) as ex:
-                list(ex.map(lambda _: self.generate([rng.randrange(1000, vocab) for _ in range(2048)], 1), range(n)))
+                list(ex.map(lambda _: self.generate([rng.randrange(1000, vocab) for _ in range(self.flush_chunk_tokens)], 1), range(n)))
 
 
 def first_divergence(a, b):
@@ -270,6 +271,7 @@ def main():
     ap.add_argument("--tokens", type=int, default=256, help="completion length")
     ap.add_argument("--concurrency", type=int, nargs="+", default=[4, 16])
     ap.add_argument("--flush", default="flood:70000", help="sglang | vllm | flood:<tokens> | none")
+    ap.add_argument("--flush-chunk-tokens", type=int, default=2048, help="each eviction prompt must fit the server context")
     ap.add_argument("--repeat", type=int, default=200)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--save", help="write greedy/sampled references (run under --concurrency[-1])")
@@ -277,11 +279,13 @@ def main():
     ap.add_argument("--logprobs", action="store_true", help="also compare every token's log-probability bits")
     ap.add_argument("--out")
     a = ap.parse_args()
+    if a.flush_chunk_tokens < 1:
+        ap.error("--flush-chunk-tokens must be positive")
     from transformers import AutoTokenizer
     tok = AutoTokenizer.from_pretrained(a.tokenizer)
     vocab = min(len(tok), 150000)
     rng = random.Random(a.seed)
-    srv = Server(a.url, a.api, a.logprobs)
+    srv = Server(a.url, a.api, a.logprobs, flush_chunk_tokens=a.flush_chunk_tokens)
     prompts = make_prompts(tok, rng, a.prompts, a.lengths)
     report = {"url": a.url, "tokens": a.tokens, "prompts": a.prompts, "lengths": a.lengths, "logprobs": a.logprobs}
     t0 = time.time()

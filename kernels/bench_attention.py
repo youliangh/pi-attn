@@ -89,33 +89,41 @@ def best_fi(r):  # fastest non-deterministic FlashInfer decode (CUDA-core or ten
     return min(v for k, v in r.items() if k in ("fi", "fi_tc") and isinstance(v, (int, float)))
 
 
-def bench_decode(batch, kv_len, hq, hkv, shared=False):
+def bench_decode(batch, kv_len, hq, hkv, shared=False, pi_first=False):
     kv, indptr, indices, last, lens = make_cache(batch, kv_len, hkv, shared)
     q = torch.randn(batch, hq, D, device=dev, dtype=torch.bfloat16)
     ws = torch.empty(256 << 20, device=dev, dtype=torch.uint8)
     res = {}
+    rows = batch * -(-kv_len // ext.GROUP_KEYS)
+    ws_o = torch.empty(rows, hq, D, device=dev)
+    ws_ml = torch.empty(rows, hq, 2 * ext.DECODE_WARPS, device=dev)
+    cnt = torch.zeros(rows, hq, ext.DECODE_WARPS, dtype=torch.int32, device=dev)
+    def pi_time():
+        return timeit(lambda i: ext.decode(q, *kv[i], indptr, indices, lens, ws_o, ws_ml, cnt, kv_len, 1 / math.sqrt(D)), len(kv))
+    if pi_first:
+        res["pi"] = pi_time()
     for name, kw, tc in [("fi", {}, False), ("fi_tc", {}, True), ("fi_det_fixed2048", {"fixed_split_size": 2048}, True)]:
         def run():
             w = flashinfer.BatchDecodeWithPagedKVCacheWrapper(ws, "NHD", use_tensor_cores=tc)
             w.plan(indptr.cpu(), indices, last.cpu(), hq, hkv, D, PAGE, q_data_type=torch.bfloat16, **kw)
             return timeit(lambda i: w.run(q, kv[i]), len(kv))
         res[name] = fi_try(run)
-    rows = batch * -(-kv_len // ext.GROUP_KEYS)
-    ws_o = torch.empty(rows, hq, D, device=dev)
-    ws_ml = torch.empty(rows, hq, 2 * ext.DECODE_WARPS, device=dev)
-    cnt = torch.zeros(rows, hq, ext.DECODE_WARPS, dtype=torch.int32, device=dev)
-    res["pi"] = timeit(lambda i: ext.decode(q, *kv[i], indptr, indices, lens, ws_o, ws_ml, cnt, kv_len, 1 / math.sqrt(D)),
-                       len(kv))
+    if not pi_first:
+        res["pi"] = pi_time()
     return res
 
 
-def bench_prefill(batch, q_len, prefix, hq, hkv):
+def bench_prefill(batch, q_len, prefix, hq, hkv, pi_first=False):
     kv_len = q_len + prefix
     kv, indptr, indices, last, lens = make_cache(batch, kv_len, hkv)
     q = torch.randn(batch * q_len, hq, D, device=dev, dtype=torch.bfloat16)
     qo = torch.arange(0, batch + 1, device=dev, dtype=torch.int32) * q_len
     ws = torch.empty(256 << 20, device=dev, dtype=torch.uint8)
     res = {}
+    def pi_time():
+        return timeit(lambda i: ext.prefill(q, *kv[i], qo, indptr, indices, lens, q_len, kv_len, 1 / math.sqrt(D), 0), len(kv))
+    if pi_first:
+        res["pi"] = pi_time()
     for name, kw in [("fi", {}), ("fi_det_fixed2048", {"fixed_split_size": 2048})]:
         def run():
             w = flashinfer.BatchPrefillWithPagedKVCacheWrapper(ws, "NHD")
@@ -123,8 +131,8 @@ def bench_prefill(batch, q_len, prefix, hq, hkv):
                    q_data_type=torch.bfloat16, **kw)
             return timeit(lambda i: w.run(q, kv[i]), len(kv))
         res[name] = fi_try(run)
-    res["pi"] = timeit(lambda i: ext.prefill(q, *kv[i], qo, indptr, indices, lens, q_len, kv_len, 1 / math.sqrt(D), 0),
-                       len(kv))
+    if not pi_first:
+        res["pi"] = pi_time()
     return res
 
 

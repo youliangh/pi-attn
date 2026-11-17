@@ -17,12 +17,13 @@ import sys
 
 import torch
 from torch.utils.cpp_extension import load
+from build import cuda_arch
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-major, minor = torch.cuda.get_device_capability()
-ext = load(name=f"pi_gemm_sm{major}{minor}", sources=[os.path.join(HERE, "gemm_torch.cu")],
+arch = cuda_arch()
+ext = load(name=f"pi_gemm_sm{arch}", sources=[os.path.join(HERE, "gemm_torch.cu")],
            extra_include_paths=[HERE, os.path.join(os.path.dirname(__import__('flashinfer').__file__), 'data', 'cutlass', 'include')],
-           extra_cuda_cflags=["-O3", "-std=c++17", "--expt-relaxed-constexpr", f"-gencode=arch=compute_{major}{minor},code=sm_{major}{minor}"],
+           extra_cuda_cflags=["-O3", "-std=c++17", "--expt-relaxed-constexpr", f"-gencode=arch=compute_{arch},code=sm_{arch}"],
            build_directory=os.environ.get("PI_ATTN_BUILD_DIR"))
 dev = "cuda"
 torch.manual_seed(0)
@@ -80,11 +81,29 @@ SLOT = {17, 18, 19}  # SegmentedKernel with L2 slots: S > 1 only
 SEGSPLIT = {54: (128, 3), 55: (64, 6)}  # S > 1 shapes only: (BK, stages), one cp.async ring per segment
 SEG_WS = {30, 31, 32, 33, *WARP_SK}  # S > 1: S * M * N partials in g_seg_ws
 
+# Independent CUTLASS mainloop resource expectation: (M + N) * K * stages * sizeof(bf16).
+# Keep the shape legality oracle separate from the production dispatch code.
+CUTLASS_TILES = {
+    10: (128, 256, 32, 3), 11: (128, 128, 32, 4), 12: (64, 128, 32, 4),
+    13: (64, 64, 32, 5), 14: (32, 64, 64, 5), 15: (64, 64, 64, 4),
+    16: (128, 256, 32, 3), 17: (128, 256, 32, 3), 18: (128, 256, 32, 3),
+    19: (128, 128, 32, 4), 44: (32, 64, 64, 5), 45: (32, 64, 64, 4),
+    46: (64, 64, 64, 4), 47: (64, 128, 32, 4), 48: (32, 64, 64, 5),
+    49: (64, 64, 64, 3), 50: (128, 64, 64, 3), 64: (32, 32, 64, 5),
+    65: (128, 128, 32, 4), 66: (128, 256, 32, 3), 67: (128, 64, 64, 5),
+    68: (64, 128, 64, 4), 69: (128, 128, 64, 3), 70: (64, 64, 64, 5),
+    71: (128, 128, 64, 3), 72: (128, 64, 64, 5),
+}
+
 
 def usable(k, M, N, K, S=None):
     """Whether kernel id k runs this shape with S segments (default: the weight's own);
     written independently of gemm_dispatch.cuh."""
     S = gemm_segments(N, K) if S is None else S
+    if k in CUTLASS_TILES:
+        tm, tn, tk, stages = CUTLASS_TILES[k]
+        if (tm + tn) * tk * stages * 2 > SMEM_OPTIN:
+            return False
     if k in SEGPAR_TILE:
         return segpar_fits(k, M, N, S)
     if k in SEGSPLIT:
@@ -213,10 +232,11 @@ def check_s8(fails):
         torch.cuda.empty_cache()
 
 
-def main(bench):
+def main(bench, single_gpu=False):
     fails = []
-    check_tp(fails)
-    check_s8(fails)
+    if not single_gpu:
+        check_tp(fails)
+        check_s8(fails)
     for name, (N, K) in SHAPES.items():
         W = (torch.randn(N, K, device=dev) * 0.02).bfloat16()
         X = torch.randn(16384 if bench else 4096, K, device=dev).bfloat16()
@@ -233,6 +253,8 @@ def main(bench):
                 elif y is not None and (not torch.equal(y[0].view(torch.int16), ref.view(torch.int16))
                                         or not torch.equal(y.view(torch.int16), full.view(torch.int16))):
                     fails.append((name, M, kern))
+                del y
+            del full, Xm
         segs = gemm_segments(N, K)
         if segs > 1:
             check_segments(name, X, W, segs, fails)
@@ -240,16 +262,24 @@ def main(bench):
         # 2^-23 per add to allow tensor-core alignment truncation) of the float64 product, and the bf16
         # output is exactly that fp32 result rounded.
         Xa = X[:256].contiguous()
-        y64 = Xa.double() @ W.double().T
-        bound = (Xa.double().abs() @ W.double().abs().T) * ((K + segs) * 2.0 ** -23)
         y32, yb = ext.linear(Xa, W, 0, True), ext.linear(Xa, W, 0, False)
-        if ((y32.double() - y64).abs() > bound).any():
-            fails.append((name, "accuracy: fp32 result outside the summation bound"))
         if not torch.equal(yb.view(torch.int16), y32.bfloat16().view(torch.int16)):
             fails.append((name, "accuracy: bf16 output is not the rounded fp32 result"))
-        e_pi = (y32.double() - y64).abs().max().item()
-        e_cb = (torch.matmul(Xa, W.T).double() - y64).abs().max().item()
-        e_pi_b = (yb.double() - y64).abs().max().item()
+        e_pi = e_cb = e_pi_b = 0.0
+        xd = Xa.double()
+        # Partition independent output columns, preserving the complete K reduction.
+        for start in range(0, N, 4096):
+            stop = min(start + 4096, N)
+            wd = W[start:stop].double()
+            y64 = xd @ wd.T
+            bound = (xd.abs() @ wd.abs().T) * ((K + segs) * 2.0 ** -23)
+            error = (y32[:, start:stop].double() - y64).abs()
+            if (error > bound).any():
+                fails.append((name, "accuracy: fp32 result outside the summation bound", start))
+            e_pi = max(e_pi, error.max().item())
+            e_cb = max(e_cb, (torch.matmul(Xa, W[start:stop].T).double() - y64).abs().max().item())
+            e_pi_b = max(e_pi_b, (yb[:, start:stop].double() - y64).abs().max().item())
+        del xd, wd, y64, bound, error, y32, yb, Xa
         line = f"{name:13s} N={N:6d} K={K:5d}: max|err| pi(fp32 out) {e_pi:.2e} pi(bf16) {e_pi_b:.2e} cublas(bf16) {e_cb:.2e}"
         if bench:
             ts = []
@@ -260,9 +290,11 @@ def main(bench):
                 ts.append(f"M={M}:{best[0]/tc:.2f}(k{best[1]})")
             line += " | pi/cublas " + " ".join(ts)
         print(line, flush=True)
+        del ref, W, X
+        torch.cuda.empty_cache()
     print("INVARIANCE FAILURES:", len(fails), fails[:8])
     return 1 if fails else 0
 
 
 if __name__ == "__main__":
-    sys.exit(main("--bench" in sys.argv))
+    sys.exit(main("--bench" in sys.argv, single_gpu="--single-gpu" in sys.argv))

@@ -44,10 +44,24 @@ def run_geometry(hq, hkv, qscale, lens, seed):
         fits = lambda L: kvs in (0, 1) or L * hq * -(-L // ext.GROUP_KEYS) * 520 <= 2 << 30
         order = [L for L in lens if fits(L)]
         random.shuffle(order)
-        outs = T.prefill(pool, [(seqs[L][0], pages[L], L) for L in order]) if order else []
-        for L, out in zip(order, outs):
-            if not T.same(out, ref[L]):
-                fails.append(("prefill-split", var, kvs, L))
+        # The actual workspace uses total query rows times the largest group count
+        # of the batch, not the sum of each sequence's individual workspace.
+        batches, current = [], []
+        for L in order:
+            trial = current + [L]
+            workspace = sum(trial) * hq * -(-max(trial) // ext.GROUP_KEYS) * 520
+            if current and kvs not in (0, 1) and workspace > 2 << 30:
+                batches.append(current)
+                current = []
+            current.append(L)
+        if current:
+            batches.append(current)
+        for batch in batches:
+            outs = T.prefill(pool, [(seqs[L][0], pages[L], L) for L in batch])
+            for L, out in zip(batch, outs):
+                if not T.same(out, ref[L]):
+                    fails.append(("prefill-split", var, kvs, L))
+            del outs
         for L in [L for L in lens if not fits(L)]:
             out = T.prefill(pool, [(seqs[L][0][L - 128:].contiguous(), pages[L], L)])[0]
             if not T.same(out, ref[L][L - 128:]):

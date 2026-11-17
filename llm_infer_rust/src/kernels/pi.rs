@@ -523,10 +523,9 @@ mod tests {
     use tch::{Device, Kind, Tensor};
 
     #[test]
+    #[ignore = "requires CUDA; run with scripts/run-rust-tests.sh cuda"]
     fn token_logprobs_match_log_softmax_and_do_not_depend_on_the_batch() {
-        if !tch::Cuda::is_available() {
-            return;
-        }
+        assert!(tch::Cuda::is_available(), "this test requires CUDA");
         let device = Device::Cuda(0);
         let logits = (Tensor::randn([5, 151936], (Kind::Float, device)) * 4.0).to_kind(Kind::BFloat16);
         let tokens = Tensor::from_slice(&[0i64, 7, 151935, 42, 1000]).to_device(device);

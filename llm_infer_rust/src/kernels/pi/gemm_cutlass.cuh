@@ -149,11 +149,16 @@ int resident_ctas(Kernel kernel, int threads, int smem) {
   const auto key = std::make_pair(device, (const void*)kernel);
   auto it = cache.find(key);
   if (it != cache.end()) return it->second;
+  int max_smem = 0;
+  if (cudaDeviceGetAttribute(&max_smem, cudaDevAttrMaxSharedMemoryPerBlockOptin, device) != cudaSuccess ||
+      smem > max_smem) return 0;
   int r = 0;
   const bool ok = smem < (48 << 10) ||
                   cudaFuncSetAttribute(kernel, cudaFuncAttributeMaxDynamicSharedMemorySize, smem) == cudaSuccess;
   if (!ok || cudaOccupancyMaxActiveBlocksPerMultiprocessor(&r, kernel, threads, smem) != cudaSuccess) r = 0;
-  return cache[key] = r;
+  // A failed runtime query must not poison later launches or graph warm-up.
+  if (r > 0) cache[key] = r;
+  return r;
 }
 
 // ------------------------------------------------------- stream-K over CUTLASS tiles ----
@@ -389,6 +394,9 @@ struct CutlassGemm {
   static cudaError_t run(const void* x, int64_t ldx, const void* w, void* y, int64_t ldy, int M, int N,
                          int K, int segs, cudaStream_t stream) {
     if (segs > 1) return run_segmented(x, ldx, w, y, ldy, M, N, K, segs, stream);
+    using Kernel = typename Gemm::GemmKernel;
+    if (resident_ctas(cutlass::Kernel<Kernel>, Kernel::kThreadCount,
+                      (int)sizeof(typename Kernel::SharedStorage)) < 1) return cudaErrorInvalidValue;
     typename Gemm::Arguments args({M, N, K}, {(const Element*)x, ldx}, {(const Element*)w, K},
                                   {(OutElement*)y, ldy}, {(OutElement*)y, ldy}, {1.f, 0.f});
     Gemm op;
@@ -453,8 +461,7 @@ struct CutlassGemm {
                                                               {(OutElement*)y, ldy}, {(OutElement*)y, ldy}, {1.f, 0.f}),
                                       segs, nullptr};
     const int smem = (int)sizeof(typename Kernel::SharedStorage);
-    if (smem >= (48 << 10) &&
-        cudaFuncSetAttribute(cutlass::Kernel<Segmented>, cudaFuncAttributeMaxDynamicSharedMemorySize, smem) != cudaSuccess)
+    if (resident_ctas(cutlass::Kernel<Segmented>, Kernel::kThreadCount, smem) < 1)
       return cudaErrorInvalidValue;
     cutlass::Kernel<Segmented><<<swizzle.get_grid_shape(grid_shape), Kernel::kThreadCount, smem, stream>>>(params);
     return cudaGetLastError();

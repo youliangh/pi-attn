@@ -146,12 +146,19 @@ def check_heads(pool, seqs, pages, alone, fails):
 
 
 def exact(q, k, v):
-    """float64 causal GQA attention for a full sequence."""
+    """FP64 reference, tiled over independent query rows/heads, never the key reduction."""
     L = q.shape[0]
-    qd, kd, vd = q.double(), k.double().repeat_interleave(HQ // HKV, 1), v.double().repeat_interleave(HQ // HKV, 1)
-    s = torch.einsum("qhd,khd->hqk", qd, kd) * SCALE
-    s = s.masked_fill(torch.triu(torch.ones(L, L, device=dev, dtype=torch.bool), 1), -math.inf)
-    return torch.einsum("hqk,khd->qhd", s.softmax(-1), vd)
+    out = torch.empty_like(q, dtype=torch.float64)
+    positions = torch.arange(L, device=q.device)
+    for h in range(HQ):
+        kvh = h // (HQ // HKV)
+        kd, vd = k[:, kvh].double(), v[:, kvh].double()
+        for start in range(0, L, 128):
+            end = min(start + 128, L)
+            s = q[start:end, h].double() @ kd.T * SCALE
+            s.masked_fill_(positions[None, :] > positions[start:end, None], -math.inf)
+            out[start:end, h] = s.softmax(-1) @ vd
+    return out
 
 
 def accuracy(L, out, q, k, v):
