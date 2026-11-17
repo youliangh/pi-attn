@@ -54,9 +54,10 @@ positions only, never by batch or schedule:
 
 ## Scope
 
-Results are reproducible on the same GPU model with the same build. Different GPU
-architectures or compilers may round differently. Tensor parallelism is not
-supported in this engine.
+The RTX 5070 profile validates results on one physical GPU with fixed model
+weights, precision, build and request sampling seed. Different compilers or
+library versions may round differently. The Rust engine runs on a single GPU.
+[Setup instructions](../../README.md#rtx-5070--wsl2-single-gpu) · [Validation results](../../results/rtx5070/SUMMARY.md)
 
 ## Checking
 

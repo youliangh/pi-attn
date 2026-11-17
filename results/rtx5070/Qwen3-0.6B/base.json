@@ -1,0 +1,69 @@
+{
+ "url": "http://127.0.0.1:18097",
+ "tokens": 64,
+ "prompts": 8,
+ "lengths": [
+  24,
+  300,
+  1100,
+  1500
+ ],
+ "logprobs": true,
+ "batch": [
+  {
+   "concurrency": 1,
+   "requests": 8,
+   "mismatched": 0,
+   "first_divergence_tokens": []
+  },
+  {
+   "concurrency": 4,
+   "requests": 8,
+   "mismatched": 0,
+   "first_divergence_tokens": []
+  }
+ ],
+ "prefix": {
+  "full_hit": 0,
+  "partial_hit": 0,
+  "requests": 4
+ },
+ "shared": {
+  "requests": 4,
+  "prefix_tokens": 1516,
+  "mismatched": 0,
+  "first_divergence_tokens": []
+ },
+ "path": {
+  "requests": 12,
+  "mismatched": 0,
+  "first_divergence_tokens": []
+ },
+ "sample_path": {
+  "requests": 12,
+  "mismatched": 0,
+  "first_divergence_tokens": []
+ },
+ "repeat": {
+  "samples": 20,
+  "unique_completions": 1
+ },
+ "sample": {
+  "rows": [
+   {
+    "concurrency": 1,
+    "requests": 8,
+    "mismatched": 0,
+    "first_divergence_tokens": []
+   },
+   {
+    "concurrency": 4,
+    "requests": 8,
+    "mismatched": 0,
+    "first_divergence_tokens": []
+   }
+  ],
+  "distinct_reference_samples": 8
+ },
+ "seconds": 30.3
+}

@@ -1,0 +1,30 @@
+{
+  "gpu": "NVIDIA GeForce RTX 5070",
+  "capability": [
+    12,
+    0
+  ],
+  "memory_bytes": 12792037376,
+  "shared_memory_per_block_optin": 101376,
+  "multiprocessors": 48,
+  "driver": "616.64",
+  "python": "Python 3.12.13",
+  "uv": "uv 0.12.20 (x86_64-unknown-linux-gnu)",
+  "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "cargo": "cargo 1.99.1 (5f94df478 2026-08-27)",
+  "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Wed_Aug_20_01:58:59_PM_PDT_2025\nCuda compilation tools, release 13.0, V13.0.88\nBuild cuda_13.0.r13.0/compiler.36424714_0",
+  "cxx": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "packages": {
+    "torch": "2.13.0+cu130",
+    "triton": "3.7.1",
+    "flashinfer-python": "0.6.18",
+    "transformers": "5.20.2"
+  },
+  "git_commit": "833bfff5b4607affd8e32f556b93b2397c07190c",
+  "lock_sha256": "abc25cce8bdde850cb3370e5debe12c7f94a320d363502d4034ee9ed69c1dd2e",
+  "arch": {
+    "PI_ATTN_ARCH": "120",
+    "FLASHINFER_CUDA_ARCH": "120",
+    "TORCH_CUDA_ARCH_LIST": "12.0"
+  }
+}

@@ -1,0 +1,21 @@
+test_concurrent_chat_limits_and_usage (e2e.test_concurrency.ConcurrentApiTest.test_concurrent_chat_limits_and_usage) ... ok
+test_non_greedy_mixed_batch (e2e.test_concurrency.ConcurrentApiTest.test_non_greedy_mixed_batch) ... ok
+test_decode_matches_reprefill (e2e.test_deterministic.DeterministicModeTest.test_decode_matches_reprefill) ... ok
+test_outputs_do_not_depend_on_concurrent_traffic (e2e.test_deterministic.DeterministicModeTest.test_outputs_do_not_depend_on_concurrent_traffic) ... ok
+test_seed_is_echoed_and_reproducible (e2e.test_deterministic.DeterministicModeTest.test_seed_is_echoed_and_reproducible) ... ok
+test_token_ids_round_trip (e2e.test_deterministic.DeterministicModeTest.test_token_ids_round_trip) ... ok
+test_chat_max_completion_tokens_and_precedence (e2e.test_protocol.ProtocolApiTest.test_chat_max_completion_tokens_and_precedence) ... ok
+test_chat_stream_matches_non_stream (e2e.test_protocol.ProtocolApiTest.test_chat_stream_matches_non_stream) ... ok
+test_completion_stream_matches_non_stream (e2e.test_protocol.ProtocolApiTest.test_completion_stream_matches_non_stream) ... ok
+test_list_models (e2e.test_protocol.ProtocolApiTest.test_list_models) ... ok
+test_max_tokens_and_usage (e2e.test_protocol.ProtocolApiTest.test_max_tokens_and_usage) ... ok
+test_chat_matches_hugging_face_golden_prompts (e2e.test_qwen3.Qwen3ApiTest.test_chat_matches_hugging_face_golden_prompts) ... ok
+test_enable_thinking_in_template_kwargs (e2e.test_qwen3.Qwen3ApiTest.test_enable_thinking_in_template_kwargs) ... ok
+test_malformed_tool_call_returns_bad_request (e2e.test_qwen3.Qwen3ApiTest.test_malformed_tool_call_returns_bad_request) ... ok
+test_reasoning_content_in_full_and_streamed_chat (e2e.test_qwen3.Qwen3ApiTest.test_reasoning_content_in_full_and_streamed_chat) ... ok
+test_tool_calls_in_full_and_streamed_chat (e2e.test_qwen3.Qwen3ApiTest.test_tool_calls_in_full_and_streamed_chat) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 9.272s
+
+OK

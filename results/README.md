@@ -1,5 +1,9 @@
 # Results
 
+The single-GPU RTX 5070 evaluation covers Qwen3-0.6B and Qwen3-1.7B on SM120.
+It includes bitwise checks and performance measurements for the Rust engine and
+the vLLM 0.27.0 integration. [Rust engine](rtx5070/SUMMARY.md) · [vLLM operators](rtx5070/vllm027/README.md) · [vLLM serving](rtx5070/vllm027/serving/README.md)
+
 The paper's evaluation is on the A800 (`a800/`). Every file there is written by one
 `eval/run_all.sh` run on an A800-SXM4-80GB (outer commit a51ba7e, engine 34203cf; environment,
 clocks and commits in `a800/ENV.txt` and `a800/run_all/clocks.log`), with two kinds of

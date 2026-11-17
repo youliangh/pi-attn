@@ -37,9 +37,68 @@ The full numerical contract, which parameters define the bits and which are free
 
 ## Quick start
 
+### RTX 5070 / WSL2 (single GPU)
+
+This profile runs dense Qwen3-0.6B and Qwen3-1.7B in BF16 on one 12 GB RTX 5070
+(SM120). Setup requires uv, Rust, GCC 13 and the Windows NVIDIA driver. It installs
+a project-local CUDA 13.0.2 toolkit, creates the root Python 3.12 environment from
+`uv.lock`, and downloads the two pinned model revisions. Use `--no-models` to
+skip the downloads or `PI_ATTN_CUDA_HOME` to select an existing CUDA 13.0 toolkit.
+
 ```bash
-git clone https://github.com/HaochengLu/pi-attn.git && cd pi-attn
-bash setup_env.sh && source env.sh      # CUDA 12.6, gcc 13, Rust, Python 3.12, four venvs, Qwen3 models, all under env/
+bash setup_env.sh --profile rtx5070
+source env.sh
+(cd llm_infer_rust && cargo build --locked --release)
+scripts/serve.sh 8000 models/Qwen3-0.6B --deterministic --dtype bfloat16 \
+  --max-running-req 4 --max-seq-len 2048 --max-total-tokens 8192 \
+  --chunked-prefill-size 512 --cuda-graph-bs 4 --prefill-cuda-graph-max-tokens 512
+```
+
+The SM120 GEMM dispatcher skips candidates that exceed the device's shared-memory
+limit. The FP64 reference tests tile independent output rows or columns to fit
+12 GB while preserving each full reduction. Run the validation stages with the
+standalone server stopped. The service checks compare token IDs and FP32 logprob
+bits across batching, prefix caching, chunk sizes, CUDA Graphs and restarts.
+
+```bash
+bash scripts/validate_rtx5070.sh kernels
+bash scripts/validate_rtx5070.sh rust
+bash scripts/validate_rtx5070.sh e2e
+bash scripts/validate_rtx5070.sh bench
+```
+
+The RTX 5070 results cover a single physical GPU with fixed weights, build and
+sampling seeds. The report includes the environment, model hashes and Rust
+serving measurements. [RTX 5070 validation report](results/rtx5070/SUMMARY.md)
+
+### vLLM 0.27.0 on the RTX 5070
+
+The separate benchmark workspace adds PI paged attention and BF16 projection and
+LM-head GEMMs to vLLM. After setting up the RTX profile above, choose one of
+`native`, `batch-invariant` or `pi` to launch a service.
+
+```bash
+uv sync --project benchmarks/vllm027 --locked
+bash benchmarks/vllm027/serve.sh --mode pi --model Qwen3-0.6B
+```
+
+For the operator comparison or the three-mode serving comparison, stop the
+interactive server first. Each runner manages its own measurements.
+
+```bash
+bash benchmarks/vllm027/run.sh             # GEMM and Attention checks and timings
+bash benchmarks/vllm027/run_serving.sh all # request-level checks and serving throughput
+```
+
+Across the two models, PI matched all 86,136 token IDs and corresponding FP32
+logprob bit patterns in 1,552 request comparisons on this GPU.
+[Integration guide](benchmarks/vllm027/README.md) · [Operator results](results/rtx5070/vllm027/README.md) · [Serving results and figures](results/rtx5070/vllm027/serving/README.md)
+
+### Original paper environment
+
+```bash
+git clone https://github.com/youliangh/pi-attn.git && cd pi-attn
+bash setup_env.sh --profile legacy && source env.sh  # CUDA 12.6, gcc 13, Rust, four venvs, paper models under env/
 (cd llm_infer_rust && FLASHINFER_CUDA_ARCH=80 cargo build --release)   # 80 = A100/A800, 89 = Ada
 
 scripts/serve.sh 8000 models/Qwen3-1.7B --deterministic
@@ -85,7 +144,7 @@ cd ../llm_infer_rust && VENV_DIR=$VIRTUAL_ENV scripts/run-rust-tests.sh cuda
 `test_mutants.py` runs deliberately broken kernels through the suite and requires it to catch every one.
 
 <details>
-<summary>Environment notes</summary>
+<summary>Original paper environment notes</summary>
 
 Everything, caches included, is installed under `env/` by `setup_env.sh` (idempotent); nothing is written to the host system or `$HOME`. Python packages come from the lock files in `requirements/`, the models from ModelScope (checked against `requirements/models.sha256`), and `VERSIONS.txt` is regenerated on every run. Download sources default to mirrors reachable from mainland China; `setup_env.sh` lists the variables that point them elsewhere.
 

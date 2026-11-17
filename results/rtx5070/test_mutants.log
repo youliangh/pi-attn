@@ -1,0 +1,12 @@
+L=517 hq=16 hkv=8: PI err mean 5.775e-04 max 8.729e-03 | FlashInfer err mean 5.775e-04 max 8.729e-03 | bf16(exact) err mean 5.142e-04
+L=2049 hq=16 hkv=8: PI err mean 4.436e-04 max 8.404e-03 | FlashInfer err mean 4.565e-04 max 8.404e-03 | bf16(exact) err mean 4.013e-04
+mutant merge_reversed: 49 failed checks, kinds ['heads', 'split']
+L=517 hq=16 hkv=8: PI err mean 5.685e-04 max 8.654e-03 | FlashInfer err mean 5.685e-04 max 8.654e-03 | bf16(exact) err mean 5.049e-04
+L=2049 hq=16 hkv=8: PI err mean 4.441e-04 max 9.109e-03 | FlashInfer err mean 4.571e-04 max 9.109e-03 | bf16(exact) err mean 4.014e-04
+mutant decode_fold_unfused: 70 failed checks, kinds ['path']
+L=517 hq=16 hkv=8: PI err mean 5.697e-04 max 8.559e-03 | FlashInfer err mean 5.755e-04 max 8.559e-03 | bf16(exact) err mean 5.132e-04
+L=2049 hq=16 hkv=8: PI err mean 4.346e-04 max 1.416e-02 | FlashInfer err mean 4.558e-04 max 1.416e-02 | bf16(exact) err mean 4.004e-04
+mutant prefill_group_256: 6465 failed checks, kinds ['heads', 'path', 'split']
+cuBLAS M-invariance control: 27/27 projections vary with M
+wrong segment count control: S=1 result equals the S=2 fold: False
+UNCAUGHT MUTANTS: 0 []

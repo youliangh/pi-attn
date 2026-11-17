@@ -1,0 +1,1444 @@
+{
+  "device": "NVIDIA GeForce RTX 5070",
+  "complete": true,
+  "rows": [
+    {
+      "kind": "gemm",
+      "shape": "0.6B qkv",
+      "m": 1,
+      "n": 4096,
+      "k": 1024,
+      "kernel": 1,
+      "samples_us": {
+        "pi": [
+          14.7,
+          14.7,
+          14.6
+        ],
+        "cublas": [
+          14.7,
+          14.6,
+          14.6
+        ]
+      },
+      "median_us": {
+        "pi": 14.7,
+        "cublas": 14.6
+      },
+      "peak_allocated_bytes": 234892288
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B qkv",
+      "m": 8,
+      "n": 4096,
+      "k": 1024,
+      "kernel": 1,
+      "samples_us": {
+        "pi": [
+          14.7,
+          14.7,
+          14.7
+        ],
+        "cublas": [
+          15.5,
+          15.5,
+          15.5
+        ]
+      },
+      "median_us": {
+        "pi": 14.7,
+        "cublas": 15.5
+      },
+      "peak_allocated_bytes": 234963968
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B qkv",
+      "m": 32,
+      "n": 4096,
+      "k": 1024,
+      "kernel": 14,
+      "samples_us": {
+        "pi": [
+          15.8,
+          15.9,
+          15.9
+        ],
+        "cublas": [
+          15.9,
+          15.9,
+          15.8
+        ]
+      },
+      "median_us": {
+        "pi": 15.9,
+        "cublas": 15.9
+      },
+      "peak_allocated_bytes": 235209728
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B qkv",
+      "m": 128,
+      "n": 4096,
+      "k": 1024,
+      "kernel": 13,
+      "samples_us": {
+        "pi": [
+          20.3,
+          20.2,
+          20.2
+        ],
+        "cublas": [
+          20.3,
+          20.3,
+          20.2
+        ]
+      },
+      "median_us": {
+        "pi": 20.2,
+        "cublas": 20.3
+      },
+      "peak_allocated_bytes": 236192768
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B qkv",
+      "m": 512,
+      "n": 4096,
+      "k": 1024,
+      "kernel": 13,
+      "samples_us": {
+        "pi": [
+          67.9,
+          67.9,
+          68.5
+        ],
+        "cublas": [
+          68.0,
+          68.0,
+          68.8
+        ]
+      },
+      "median_us": {
+        "pi": 67.9,
+        "cublas": 68.0
+      },
+      "peak_allocated_bytes": 240124928
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B o",
+      "m": 1,
+      "n": 1024,
+      "k": 2048,
+      "kernel": 21,
+      "samples_us": {
+        "pi": [
+          8.4,
+          8.4,
+          8.4
+        ],
+        "cublas": [
+          8.5,
+          8.6,
+          8.5
+        ]
+      },
+      "median_us": {
+        "pi": 8.4,
+        "cublas": 8.5
+      },
+      "peak_allocated_bytes": 234888192
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B o",
+      "m": 8,
+      "n": 1024,
+      "k": 2048,
+      "kernel": 21,
+      "samples_us": {
+        "pi": [
+          8.5,
+          8.5,
+          8.5
+        ],
+        "cublas": [
+          12.0,
+          12.0,
+          12.0
+        ]
+      },
+      "median_us": {
+        "pi": 8.5,
+        "cublas": 12.0
+      },
+      "peak_allocated_bytes": 234931200
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B o",
+      "m": 32,
+      "n": 1024,
+      "k": 2048,
+      "kernel": 48,
+      "samples_us": {
+        "pi": [
+          9.4,
+          9.5,
+          9.5
+        ],
+        "cublas": [
+          9.8,
+          9.9,
+          9.8
+        ]
+      },
+      "median_us": {
+        "pi": 9.5,
+        "cublas": 9.8
+      },
+      "peak_allocated_bytes": 235078656
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B o",
+      "m": 128,
+      "n": 1024,
+      "k": 2048,
+      "kernel": 13,
+      "samples_us": {
+        "pi": [
+          14.5,
+          14.4,
+          14.5
+        ],
+        "cublas": [
+          19.0,
+          18.9,
+          19.6
+        ]
+      },
+      "median_us": {
+        "pi": 14.5,
+        "cublas": 19.0
+      },
+      "peak_allocated_bytes": 235668480
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B o",
+      "m": 512,
+      "n": 1024,
+      "k": 2048,
+      "kernel": 13,
+      "samples_us": {
+        "pi": [
+          38.0,
+          38.5,
+          38.1
+        ],
+        "cublas": [
+          39.8,
+          40.3,
+          40.0
+        ]
+      },
+      "median_us": {
+        "pi": 38.1,
+        "cublas": 40.0
+      },
+      "peak_allocated_bytes": 238027776
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B gateup",
+      "m": 1,
+      "n": 6144,
+      "k": 1024,
+      "kernel": 7,
+      "samples_us": {
+        "pi": [
+          21.7,
+          21.5,
+          21.5
+        ],
+        "cublas": [
+          21.4,
+          21.3,
+          21.3
+        ]
+      },
+      "median_us": {
+        "pi": 21.5,
+        "cublas": 21.3
+      },
+      "peak_allocated_bytes": 243284992
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B gateup",
+      "m": 8,
+      "n": 6144,
+      "k": 1024,
+      "kernel": 7,
+      "samples_us": {
+        "pi": [
+          21.5,
+          21.6,
+          21.6
+        ],
+        "cublas": [
+          22.3,
+          22.3,
+          22.3
+        ]
+      },
+      "median_us": {
+        "pi": 21.6,
+        "cublas": 22.3
+      },
+      "peak_allocated_bytes": 243385344
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B gateup",
+      "m": 32,
+      "n": 6144,
+      "k": 1024,
+      "kernel": 2,
+      "samples_us": {
+        "pi": [
+          22.6,
+          22.3,
+          22.2
+        ],
+        "cublas": [
+          23.4,
+          22.9,
+          22.6
+        ]
+      },
+      "median_us": {
+        "pi": 22.3,
+        "cublas": 22.9
+      },
+      "peak_allocated_bytes": 243729408
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B gateup",
+      "m": 128,
+      "n": 6144,
+      "k": 1024,
+      "kernel": 11,
+      "samples_us": {
+        "pi": [
+          27.5,
+          27.5,
+          27.6
+        ],
+        "cublas": [
+          27.4,
+          27.5,
+          27.6
+        ]
+      },
+      "median_us": {
+        "pi": 27.5,
+        "cublas": 27.5
+      },
+      "peak_allocated_bytes": 245105664
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B gateup",
+      "m": 512,
+      "n": 6144,
+      "k": 1024,
+      "kernel": 12,
+      "samples_us": {
+        "pi": [
+          96.3,
+          97.7,
+          97.4
+        ],
+        "cublas": [
+          99.2,
+          99.2,
+          98.8
+        ]
+      },
+      "median_us": {
+        "pi": 97.4,
+        "cublas": 99.2
+      },
+      "peak_allocated_bytes": 250610688
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B down",
+      "m": 1,
+      "n": 1024,
+      "k": 3072,
+      "kernel": 21,
+      "samples_us": {
+        "pi": [
+          12.5,
+          12.5,
+          12.5
+        ],
+        "cublas": [
+          12.5,
+          12.5,
+          12.5
+        ]
+      },
+      "median_us": {
+        "pi": 12.5,
+        "cublas": 12.5
+      },
+      "peak_allocated_bytes": 236987392
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B down",
+      "m": 8,
+      "n": 1024,
+      "k": 3072,
+      "kernel": 21,
+      "samples_us": {
+        "pi": [
+          12.6,
+          12.6,
+          12.6
+        ],
+        "cublas": [
+          17.5,
+          17.5,
+          17.5
+        ]
+      },
+      "median_us": {
+        "pi": 12.6,
+        "cublas": 17.5
+      },
+      "peak_allocated_bytes": 237044736
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B down",
+      "m": 32,
+      "n": 1024,
+      "k": 3072,
+      "kernel": 48,
+      "samples_us": {
+        "pi": [
+          13.0,
+          12.9,
+          12.9
+        ],
+        "cublas": [
+          13.3,
+          13.3,
+          13.4
+        ]
+      },
+      "median_us": {
+        "pi": 12.9,
+        "cublas": 13.3
+      },
+      "peak_allocated_bytes": 237241344
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B down",
+      "m": 128,
+      "n": 1024,
+      "k": 3072,
+      "kernel": 45,
+      "samples_us": {
+        "pi": [
+          18.5,
+          18.6,
+          18.6
+        ],
+        "cublas": [
+          19.8,
+          19.5,
+          19.8
+        ]
+      },
+      "median_us": {
+        "pi": 18.6,
+        "cublas": 19.8
+      },
+      "peak_allocated_bytes": 238027776
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B down",
+      "m": 512,
+      "n": 1024,
+      "k": 3072,
+      "kernel": 13,
+      "samples_us": {
+        "pi": [
+          55.5,
+          56.3,
+          55.7
+        ],
+        "cublas": [
+          55.9,
+          55.6,
+          55.8
+        ]
+      },
+      "median_us": {
+        "pi": 55.7,
+        "cublas": 55.8
+      },
+      "peak_allocated_bytes": 241173504
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B lm_head",
+      "m": 1,
+      "n": 151936,
+      "k": 1024,
+      "kernel": 30,
+      "samples_us": {
+        "pi": [
+          538.7,
+          523.0,
+          519.1
+        ],
+        "cublas": [
+          537.5,
+          524.4,
+          511.8
+        ]
+      },
+      "median_us": {
+        "pi": 523.0,
+        "cublas": 524.4
+      },
+      "peak_allocated_bytes": 378580992
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B lm_head",
+      "m": 8,
+      "n": 151936,
+      "k": 1024,
+      "kernel": 42,
+      "samples_us": {
+        "pi": [
+          527.5,
+          526.9,
+          525.4
+        ],
+        "cublas": [
+          531.2,
+          533.1,
+          523.4
+        ]
+      },
+      "median_us": {
+        "pi": 526.9,
+        "cublas": 531.2
+      },
+      "peak_allocated_bytes": 380722176
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B lm_head",
+      "m": 32,
+      "n": 151936,
+      "k": 1024,
+      "kernel": 13,
+      "samples_us": {
+        "pi": [
+          530.4,
+          530.6,
+          531.4
+        ],
+        "cublas": [
+          532.3,
+          533.9,
+          531.5
+        ]
+      },
+      "median_us": {
+        "pi": 530.6,
+        "cublas": 532.3
+      },
+      "peak_allocated_bytes": 388064256
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B lm_head",
+      "m": 128,
+      "n": 151936,
+      "k": 1024,
+      "kernel": 12,
+      "samples_us": {
+        "pi": [
+          661.9,
+          668.7,
+          661.9
+        ],
+        "cublas": [
+          691.7,
+          693.5,
+          702.8
+        ]
+      },
+      "median_us": {
+        "pi": 661.9,
+        "cublas": 693.5
+      },
+      "peak_allocated_bytes": 418382848
+    },
+    {
+      "kind": "gemm",
+      "shape": "0.6B lm_head",
+      "m": 512,
+      "n": 151936,
+      "k": 1024,
+      "kernel": 12,
+      "samples_us": {
+        "pi": [
+          2601.0,
+          2559.6,
+          2558.1
+        ],
+        "cublas": [
+          2646.4,
+          2666.1,
+          2687.6
+        ]
+      },
+      "median_us": {
+        "pi": 2559.6,
+        "cublas": 2666.1
+      },
+      "peak_allocated_bytes": 534905856
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B qkv",
+      "m": 1,
+      "n": 4096,
+      "k": 2048,
+      "kernel": 21,
+      "samples_us": {
+        "pi": [
+          29.1,
+          29.2,
+          29.1
+        ],
+        "cublas": [
+          28.6,
+          28.7,
+          28.6
+        ]
+      },
+      "median_us": {
+        "pi": 29.1,
+        "cublas": 28.6
+      },
+      "peak_allocated_bytes": 234894336
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B qkv",
+      "m": 8,
+      "n": 4096,
+      "k": 2048,
+      "kernel": 21,
+      "samples_us": {
+        "pi": [
+          29.0,
+          29.2,
+          29.6
+        ],
+        "cublas": [
+          30.0,
+          30.0,
+          30.0
+        ]
+      },
+      "median_us": {
+        "pi": 29.2,
+        "cublas": 30.0
+      },
+      "peak_allocated_bytes": 234980352
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B qkv",
+      "m": 32,
+      "n": 4096,
+      "k": 2048,
+      "kernel": 14,
+      "samples_us": {
+        "pi": [
+          29.2,
+          29.1,
+          29.2
+        ],
+        "cublas": [
+          36.1,
+          36.0,
+          36.0
+        ]
+      },
+      "median_us": {
+        "pi": 29.2,
+        "cublas": 36.0
+      },
+      "peak_allocated_bytes": 235275264
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B qkv",
+      "m": 128,
+      "n": 4096,
+      "k": 2048,
+      "kernel": 13,
+      "samples_us": {
+        "pi": [
+          38.5,
+          38.5,
+          38.5
+        ],
+        "cublas": [
+          43.6,
+          43.6,
+          43.2
+        ]
+      },
+      "median_us": {
+        "pi": 38.5,
+        "cublas": 43.6
+      },
+      "peak_allocated_bytes": 236454912
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B qkv",
+      "m": 512,
+      "n": 4096,
+      "k": 2048,
+      "kernel": 13,
+      "samples_us": {
+        "pi": [
+          132.0,
+          133.3,
+          133.2
+        ],
+        "cublas": [
+          131.9,
+          131.7,
+          133.0
+        ]
+      },
+      "median_us": {
+        "pi": 133.2,
+        "cublas": 131.9
+      },
+      "peak_allocated_bytes": 241173504
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B o",
+      "m": 1,
+      "n": 2048,
+      "k": 2048,
+      "kernel": 30,
+      "samples_us": {
+        "pi": [
+          15.3,
+          15.3,
+          15.3
+        ],
+        "cublas": [
+          15.1,
+          15.1,
+          15.1
+        ]
+      },
+      "median_us": {
+        "pi": 15.3,
+        "cublas": 15.1
+      },
+      "peak_allocated_bytes": 234890240
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B o",
+      "m": 8,
+      "n": 2048,
+      "k": 2048,
+      "kernel": 30,
+      "samples_us": {
+        "pi": [
+          15.3,
+          15.3,
+          15.4
+        ],
+        "cublas": [
+          16.2,
+          16.2,
+          16.3
+        ]
+      },
+      "median_us": {
+        "pi": 15.3,
+        "cublas": 16.2
+      },
+      "peak_allocated_bytes": 234947584
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B o",
+      "m": 32,
+      "n": 2048,
+      "k": 2048,
+      "kernel": 14,
+      "samples_us": {
+        "pi": [
+          15.3,
+          15.4,
+          15.4
+        ],
+        "cublas": [
+          16.6,
+          16.7,
+          16.7
+        ]
+      },
+      "median_us": {
+        "pi": 15.4,
+        "cublas": 16.7
+      },
+      "peak_allocated_bytes": 235144192
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B o",
+      "m": 128,
+      "n": 2048,
+      "k": 2048,
+      "kernel": 46,
+      "samples_us": {
+        "pi": [
+          22.9,
+          22.0,
+          21.9
+        ],
+        "cublas": [
+          23.5,
+          23.8,
+          23.6
+        ]
+      },
+      "median_us": {
+        "pi": 22.0,
+        "cublas": 23.6
+      },
+      "peak_allocated_bytes": 235930624
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B o",
+      "m": 512,
+      "n": 2048,
+      "k": 2048,
+      "kernel": 65,
+      "samples_us": {
+        "pi": [
+          69.4,
+          69.7,
+          69.7
+        ],
+        "cublas": [
+          72.5,
+          72.8,
+          72.8
+        ]
+      },
+      "median_us": {
+        "pi": 69.7,
+        "cublas": 72.8
+      },
+      "peak_allocated_bytes": 239076352
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B gateup",
+      "m": 1,
+      "n": 12288,
+      "k": 2048,
+      "kernel": 14,
+      "samples_us": {
+        "pi": [
+          81.2,
+          81.1,
+          81.1
+        ],
+        "cublas": [
+          80.5,
+          80.6,
+          80.6
+        ]
+      },
+      "median_us": {
+        "pi": 81.1,
+        "cublas": 80.6
+      },
+      "peak_allocated_bytes": 268465152
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B gateup",
+      "m": 8,
+      "n": 12288,
+      "k": 2048,
+      "kernel": 14,
+      "samples_us": {
+        "pi": [
+          81.7,
+          81.6,
+          81.2
+        ],
+        "cublas": [
+          83.9,
+          84.0,
+          84.2
+        ]
+      },
+      "median_us": {
+        "pi": 81.6,
+        "cublas": 84.0
+      },
+      "peak_allocated_bytes": 268665856
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B gateup",
+      "m": 32,
+      "n": 12288,
+      "k": 2048,
+      "kernel": 14,
+      "samples_us": {
+        "pi": [
+          82.6,
+          82.3,
+          82.5
+        ],
+        "cublas": [
+          85.6,
+          85.4,
+          85.7
+        ]
+      },
+      "median_us": {
+        "pi": 82.5,
+        "cublas": 85.6
+      },
+      "peak_allocated_bytes": 269353984
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B gateup",
+      "m": 128,
+      "n": 12288,
+      "k": 2048,
+      "kernel": 12,
+      "samples_us": {
+        "pi": [
+          99.4,
+          99.6,
+          99.3
+        ],
+        "cublas": [
+          100.1,
+          100.0,
+          100.1
+        ]
+      },
+      "median_us": {
+        "pi": 99.4,
+        "cublas": 100.1
+      },
+      "peak_allocated_bytes": 272106496
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B gateup",
+      "m": 512,
+      "n": 12288,
+      "k": 2048,
+      "kernel": 69,
+      "samples_us": {
+        "pi": [
+          413.3,
+          423.9,
+          413.7
+        ],
+        "cublas": [
+          406.7,
+          414.7,
+          406.7
+        ]
+      },
+      "median_us": {
+        "pi": 413.7,
+        "cublas": 406.7
+      },
+      "peak_allocated_bytes": 283116544
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B down",
+      "m": 1,
+      "n": 2048,
+      "k": 6144,
+      "kernel": 30,
+      "samples_us": {
+        "pi": [
+          44.9,
+          45.1,
+          44.9
+        ],
+        "cublas": [
+          46.3,
+          46.4,
+          46.3
+        ]
+      },
+      "median_us": {
+        "pi": 44.9,
+        "cublas": 46.3
+      },
+      "peak_allocated_bytes": 243287040
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B down",
+      "m": 8,
+      "n": 2048,
+      "k": 6144,
+      "kernel": 30,
+      "samples_us": {
+        "pi": [
+          45.1,
+          44.9,
+          45.0
+        ],
+        "cublas": [
+          51.0,
+          51.0,
+          51.2
+        ]
+      },
+      "median_us": {
+        "pi": 45.0,
+        "cublas": 51.0
+      },
+      "peak_allocated_bytes": 243401728
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B down",
+      "m": 32,
+      "n": 2048,
+      "k": 6144,
+      "kernel": 14,
+      "samples_us": {
+        "pi": [
+          47.5,
+          47.7,
+          47.6
+        ],
+        "cublas": [
+          47.3,
+          47.5,
+          47.2
+        ]
+      },
+      "median_us": {
+        "pi": 47.6,
+        "cublas": 47.3
+      },
+      "peak_allocated_bytes": 243794944
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B down",
+      "m": 128,
+      "n": 2048,
+      "k": 6144,
+      "kernel": 46,
+      "samples_us": {
+        "pi": [
+          61.9,
+          62.0,
+          61.9
+        ],
+        "cublas": [
+          56.9,
+          56.8,
+          56.9
+        ]
+      },
+      "median_us": {
+        "pi": 61.9,
+        "cublas": 56.9
+      },
+      "peak_allocated_bytes": 245367808
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B down",
+      "m": 512,
+      "n": 2048,
+      "k": 6144,
+      "kernel": 71,
+      "samples_us": {
+        "pi": [
+          207.1,
+          195.9,
+          214.2
+        ],
+        "cublas": [
+          208.9,
+          201.7,
+          210.9
+        ]
+      },
+      "median_us": {
+        "pi": 207.1,
+        "cublas": 208.9
+      },
+      "peak_allocated_bytes": 251659264
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B lm_head",
+      "m": 1,
+      "n": 151936,
+      "k": 2048,
+      "kernel": 21,
+      "samples_us": {
+        "pi": [
+          1039.6,
+          1032.3,
+          1042.5
+        ],
+        "cublas": [
+          1036.1,
+          1021.8,
+          1008.1
+        ]
+      },
+      "median_us": {
+        "pi": 1039.6,
+        "cublas": 1021.8
+      },
+      "peak_allocated_bytes": 690272256
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B lm_head",
+      "m": 8,
+      "n": 151936,
+      "k": 2048,
+      "kernel": 21,
+      "samples_us": {
+        "pi": [
+          1042.0,
+          1044.2,
+          1035.7
+        ],
+        "cublas": [
+          1047.4,
+          1044.1,
+          1047.5
+        ]
+      },
+      "median_us": {
+        "pi": 1042.0,
+        "cublas": 1047.4
+      },
+      "peak_allocated_bytes": 692427776
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B lm_head",
+      "m": 32,
+      "n": 151936,
+      "k": 2048,
+      "kernel": 14,
+      "samples_us": {
+        "pi": [
+          1056.7,
+          1062.4,
+          1066.6
+        ],
+        "cublas": [
+          1070.1,
+          1071.5,
+          1078.6
+        ]
+      },
+      "median_us": {
+        "pi": 1062.4,
+        "cublas": 1071.5
+      },
+      "peak_allocated_bytes": 699819008
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B lm_head",
+      "m": 128,
+      "n": 151936,
+      "k": 2048,
+      "kernel": 11,
+      "samples_us": {
+        "pi": [
+          1342.2,
+          1290.3,
+          1300.7
+        ],
+        "cublas": [
+          1388.4,
+          1354.0,
+          1362.7
+        ]
+      },
+      "median_us": {
+        "pi": 1300.7,
+        "cublas": 1362.7
+      },
+      "peak_allocated_bytes": 730334208
+    },
+    {
+      "kind": "gemm",
+      "shape": "1.7B lm_head",
+      "m": 512,
+      "n": 151936,
+      "k": 2048,
+      "kernel": 69,
+      "samples_us": {
+        "pi": [
+          5181.1,
+          5245.8,
+          5163.6
+        ],
+        "cublas": [
+          5121.8,
+          5140.4,
+          5090.8
+        ]
+      },
+      "median_us": {
+        "pi": 5181.1,
+        "cublas": 5121.8
+      },
+      "peak_allocated_bytes": 847643648
+    },
+    {
+      "kind": "decode",
+      "shape": [
+        1,
+        1024
+      ],
+      "samples_us": [
+        {
+          "fi": 10.1,
+          "fi_tc": 12.2,
+          "fi_det_fixed2048": 16.0,
+          "pi": 14.0
+        },
+        {
+          "pi": 14.1,
+          "fi": 10.1,
+          "fi_tc": 12.3,
+          "fi_det_fixed2048": 16.0
+        },
+        {
+          "fi": 10.0,
+          "fi_tc": 12.2,
+          "fi_det_fixed2048": 16.1,
+          "pi": 14.0
+        }
+      ],
+      "peak_allocated_bytes": 429685248
+    },
+    {
+      "kind": "decode",
+      "shape": [
+        4,
+        2048
+      ],
+      "samples_us": [
+        {
+          "fi": 56.2,
+          "fi_tc": 58.3,
+          "fi_det_fixed2048": 57.0,
+          "pi": 55.7
+        },
+        {
+          "pi": 55.7,
+          "fi": 56.2,
+          "fi_tc": 58.4,
+          "fi_det_fixed2048": 56.8
+        },
+        {
+          "fi": 56.3,
+          "fi_tc": 58.1,
+          "fi_det_fixed2048": 56.9,
+          "pi": 55.7
+        }
+      ],
+      "peak_allocated_bytes": 478661120
+    },
+    {
+      "kind": "decode",
+      "shape": [
+        1,
+        8192
+      ],
+      "samples_us": [
+        {
+          "fi": 56.6,
+          "fi_tc": 58.2,
+          "fi_det_fixed2048": 106.8,
+          "pi": 56.6
+        },
+        {
+          "pi": 56.7,
+          "fi": 56.8,
+          "fi_tc": 58.6,
+          "fi_det_fixed2048": 106.5
+        },
+        {
+          "fi": 56.5,
+          "fi_tc": 58.3,
+          "fi_det_fixed2048": 106.6,
+          "pi": 56.5
+        }
+      ],
+      "peak_allocated_bytes": 478636544
+    },
+    {
+      "kind": "prefill",
+      "shape": [
+        1,
+        512,
+        0
+      ],
+      "samples_us": [
+        {
+          "fi": 57.8,
+          "fi_det_fixed2048": 57.8,
+          "pi": 44.2
+        },
+        {
+          "pi": 44.3,
+          "fi": 57.8,
+          "fi_det_fixed2048": 57.8
+        },
+        {
+          "fi": 57.8,
+          "fi_det_fixed2048": 57.8,
+          "pi": 44.1
+        }
+      ],
+      "peak_allocated_bytes": 376116736
+    },
+    {
+      "kind": "prefill",
+      "shape": [
+        1,
+        2048,
+        0
+      ],
+      "samples_us": [
+        {
+          "fi": 409.7,
+          "fi_det_fixed2048": 408.5,
+          "pi": 395.7
+        },
+        {
+          "pi": 404.4,
+          "fi": 407.3,
+          "fi_det_fixed2048": 410.1
+        },
+        {
+          "fi": 406.9,
+          "fi_det_fixed2048": 407.2,
+          "pi": 403.0
+        }
+      ],
+      "peak_allocated_bytes": 496375296
+    },
+    {
+      "kind": "prefill",
+      "shape": [
+        4,
+        512,
+        0
+      ],
+      "samples_us": [
+        {
+          "fi": 112.2,
+          "fi_det_fixed2048": 112.2,
+          "pi": 114.6
+        },
+        {
+          "pi": 121.9,
+          "fi": 120.1,
+          "fi_det_fixed2048": 111.9
+        },
+        {
+          "fi": 112.2,
+          "fi_det_fixed2048": 112.7,
+          "pi": 113.8
+        }
+      ],
+      "peak_allocated_bytes": 496375296
+    },
+    {
+      "kind": "prefill",
+      "shape": [
+        1,
+        128,
+        4096
+      ],
+      "samples_us": [
+        {
+          "fi": 89.4,
+          "fi_det_fixed2048": 253.2,
+          "pi": 104.7
+        },
+        {
+          "pi": 105.0,
+          "fi": 89.5,
+          "fi_det_fixed2048": 237.5
+        },
+        {
+          "fi": 89.4,
+          "fi_det_fixed2048": 254.5,
+          "pi": 104.5
+        }
+      ],
+      "peak_allocated_bytes": 486298624
+    }
+  ]
+}

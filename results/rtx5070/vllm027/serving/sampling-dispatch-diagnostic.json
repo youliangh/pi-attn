@@ -1,0 +1,459 @@
+{
+  "complete": true,
+  "seed": 7,
+  "top_k": 50,
+  "top_p": 0.95,
+  "vocab_size": 151936,
+  "rows": [
+    {
+      "case": "random",
+      "batch": 1,
+      "probe_positions": [
+        0
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "random",
+      "batch": 2,
+      "probe_positions": [
+        0,
+        1
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "random",
+      "batch": 7,
+      "probe_positions": [
+        0,
+        3,
+        6
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "random",
+      "batch": 8,
+      "probe_positions": [
+        0,
+        4,
+        7
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "random",
+      "batch": 9,
+      "probe_positions": [
+        0,
+        4,
+        8
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "random",
+      "batch": 16,
+      "probe_positions": [
+        0,
+        8,
+        15
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "bf16_logits",
+      "batch": 1,
+      "probe_positions": [
+        0
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "bf16_logits",
+      "batch": 2,
+      "probe_positions": [
+        0,
+        1
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "bf16_logits",
+      "batch": 7,
+      "probe_positions": [
+        0,
+        3,
+        6
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "bf16_logits",
+      "batch": 8,
+      "probe_positions": [
+        0,
+        4,
+        7
+      ],
+      "official_filter_bit_mismatches": 6,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": [
+        [
+          0,
+          95462
+        ],
+        [
+          0,
+          150818
+        ],
+        [
+          1,
+          95462
+        ],
+        [
+          1,
+          150818
+        ],
+        [
+          2,
+          95462
+        ],
+        [
+          2,
+          150818
+        ]
+      ]
+    },
+    {
+      "case": "bf16_logits",
+      "batch": 9,
+      "probe_positions": [
+        0,
+        4,
+        8
+      ],
+      "official_filter_bit_mismatches": 6,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": [
+        [
+          0,
+          95462
+        ],
+        [
+          0,
+          150818
+        ],
+        [
+          1,
+          95462
+        ],
+        [
+          1,
+          150818
+        ],
+        [
+          2,
+          95462
+        ],
+        [
+          2,
+          150818
+        ]
+      ]
+    },
+    {
+      "case": "bf16_logits",
+      "batch": 16,
+      "probe_positions": [
+        0,
+        8,
+        15
+      ],
+      "official_filter_bit_mismatches": 6,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": [
+        [
+          0,
+          95462
+        ],
+        [
+          0,
+          150818
+        ],
+        [
+          1,
+          95462
+        ],
+        [
+          1,
+          150818
+        ],
+        [
+          2,
+          95462
+        ],
+        [
+          2,
+          150818
+        ]
+      ]
+    },
+    {
+      "case": "ties",
+      "batch": 1,
+      "probe_positions": [
+        0
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "ties",
+      "batch": 2,
+      "probe_positions": [
+        0,
+        1
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "ties",
+      "batch": 7,
+      "probe_positions": [
+        0,
+        3,
+        6
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "ties",
+      "batch": 8,
+      "probe_positions": [
+        0,
+        4,
+        7
+      ],
+      "official_filter_bit_mismatches": 2682,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": [
+        [
+          0,
+          64
+        ],
+        [
+          0,
+          103
+        ],
+        [
+          0,
+          306
+        ],
+        [
+          0,
+          763
+        ],
+        [
+          0,
+          766
+        ],
+        [
+          0,
+          1068
+        ],
+        [
+          0,
+          1117
+        ],
+        [
+          0,
+          1260
+        ]
+      ]
+    },
+    {
+      "case": "ties",
+      "batch": 9,
+      "probe_positions": [
+        0,
+        4,
+        8
+      ],
+      "official_filter_bit_mismatches": 2682,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": [
+        [
+          0,
+          64
+        ],
+        [
+          0,
+          103
+        ],
+        [
+          0,
+          306
+        ],
+        [
+          0,
+          763
+        ],
+        [
+          0,
+          766
+        ],
+        [
+          0,
+          1068
+        ],
+        [
+          0,
+          1117
+        ],
+        [
+          0,
+          1260
+        ]
+      ]
+    },
+    {
+      "case": "ties",
+      "batch": 16,
+      "probe_positions": [
+        0,
+        8,
+        15
+      ],
+      "official_filter_bit_mismatches": 2682,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": [
+        [
+          0,
+          64
+        ],
+        [
+          0,
+          103
+        ],
+        [
+          0,
+          306
+        ],
+        [
+          0,
+          763
+        ],
+        [
+          0,
+          766
+        ],
+        [
+          0,
+          1068
+        ],
+        [
+          0,
+          1117
+        ],
+        [
+          0,
+          1260
+        ]
+      ]
+    },
+    {
+      "case": "threshold",
+      "batch": 1,
+      "probe_positions": [
+        0
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "threshold",
+      "batch": 2,
+      "probe_positions": [
+        0,
+        1
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "threshold",
+      "batch": 7,
+      "probe_positions": [
+        0,
+        3,
+        6
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "threshold",
+      "batch": 8,
+      "probe_positions": [
+        0,
+        4,
+        7
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "threshold",
+      "batch": 9,
+      "probe_positions": [
+        0,
+        4,
+        8
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    },
+    {
+      "case": "threshold",
+      "batch": 16,
+      "probe_positions": [
+        0,
+        8,
+        15
+      ],
+      "official_filter_bit_mismatches": 0,
+      "fixed_filter_bit_mismatches": 0,
+      "first_mismatch_positions": []
+    }
+  ]
+}

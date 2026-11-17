@@ -1,0 +1,31 @@
+{
+  "vllm_version": "0.27.0",
+  "tag": "v0.27.0",
+  "files": {
+    "vllm/model_executor/layers/batch_invariant.py": {
+      "sha256": "2cfcd9ac7d9b954155f012ba44ac21f970ea28ab770248037a00988725176f98",
+      "url": "https://github.com/vllm-project/vllm/blob/v0.27.0/vllm/model_executor/layers/batch_invariant.py"
+    },
+    "vllm/v1/attention/ops/triton_unified_attention.py": {
+      "sha256": "992a2bc892e2e2b43fbd3c8163816ccf7e97ced56cb542bd827adb0ddb2df9fa",
+      "url": "https://github.com/vllm-project/vllm/blob/v0.27.0/vllm/v1/attention/ops/triton_unified_attention.py"
+    },
+    "vllm/v1/attention/backends/fa_utils.py": {
+      "sha256": "b2dbce73143dab2c481bd21647c44349e79d37c3d9df521c0898a38e6c346118",
+      "url": "https://github.com/vllm-project/vllm/blob/v0.27.0/vllm/v1/attention/backends/fa_utils.py"
+    },
+    "vllm/vllm_flash_attn/flash_attn_interface.py": {
+      "sha256": "a011f93f1a81b07ca3763ea15ad1b3b3373a3ecb07ca20c55355fb91d462c143",
+      "url": "https://github.com/vllm-project/vllm/blob/v0.27.0/vllm/vllm_flash_attn/flash_attn_interface.py"
+    }
+  },
+  "wheel": {
+    "filename": "vllm-0.27.0-cp38-abi3-manylinux_2_28_x86_64.whl",
+    "url": "https://files.pythonhosted.org/packages/df/8a/2147c8227501b76829950857a839bebfe7f3f736704649c98bdec3d219f8/vllm-0.27.0-cp38-abi3-manylinux_2_28_x86_64.whl",
+    "digests": {
+      "blake2b_256": "df8a2147c8227501b76829950857a839bebfe7f3f736704649c98bdec3d219f8",
+      "md5": "4ebae9ca5b18f355b7306af7f1042ffe",
+      "sha256": "02d8265e71bab1cf50f93026211c9a75562a7f0a72b3a32ec5e0e8bcdd62ec75"
+    }
+  }
+}

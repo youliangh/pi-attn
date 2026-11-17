@@ -1,0 +1,173 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "page": 16,
+      "hq": 16,
+      "seed": 0,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 16,
+      "seed": 0,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 16,
+      "seed": 0,
+      "batch": 15,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 16,
+      "seed": 7,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 16,
+      "seed": 7,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 16,
+      "seed": 7,
+      "batch": 15,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 32,
+      "seed": 0,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 32,
+      "seed": 0,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 32,
+      "seed": 0,
+      "batch": 15,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 32,
+      "seed": 7,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 32,
+      "seed": 7,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 16,
+      "hq": 32,
+      "seed": 7,
+      "batch": 15,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 16,
+      "seed": 0,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 16,
+      "seed": 0,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 16,
+      "seed": 0,
+      "batch": 15,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 16,
+      "seed": 7,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 16,
+      "seed": 7,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 16,
+      "seed": 7,
+      "batch": 15,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 32,
+      "seed": 0,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 32,
+      "seed": 0,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 32,
+      "seed": 0,
+      "batch": 15,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 32,
+      "seed": 7,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 32,
+      "seed": 7,
+      "batch": 8,
+      "bit_mismatches": 0
+    },
+    {
+      "page": 32,
+      "hq": 32,
+      "seed": 7,
+      "batch": 15,
+      "bit_mismatches": 0
+    }
+  ]
+}

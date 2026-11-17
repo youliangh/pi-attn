@@ -1,0 +1,342 @@
+{
+  "rounds": 3,
+  "requests_per_workload_per_round": 16,
+  "rows": [
+    {
+      "model": "Qwen3-0.6B",
+      "workload": {
+        "in": 64,
+        "out": 64,
+        "concurrency": 1,
+        "shared": 0
+      },
+      "modes": {
+        "pi": {
+          "median": {
+            "out_tok_s": 348.5088215384661,
+            "ttft_ms": 5.6064213750346426,
+            "tpot_ms": 2.823399634920291,
+            "itl_ms": 2.844033458998638,
+            "e2e_ms": 183.48059837501296
+          },
+          "throughput_samples": [
+            370.9822295312244,
+            346.2547977389021,
+            348.5088215384661
+          ],
+          "whole_device_peak_mib": 5132
+        },
+        "flashinfer": {
+          "median": {
+            "out_tok_s": 349.58854484887235,
+            "ttft_ms": 5.669433499917886,
+            "tpot_ms": 2.813296901788615,
+            "itl_ms": 2.833957509001266,
+            "e2e_ms": 182.9204150624264
+          },
+          "throughput_samples": [
+            343.4060451109124,
+            349.58854484887235,
+            362.2395341613097
+          ],
+          "whole_device_peak_mib": 4984
+        }
+      },
+      "throughput_pi_over_flashinfer": 0.9969114453939759
+    },
+    {
+      "model": "Qwen3-0.6B",
+      "workload": {
+        "in": 512,
+        "out": 128,
+        "concurrency": 4,
+        "shared": 0
+      },
+      "modes": {
+        "pi": {
+          "median": {
+            "out_tok_s": 1033.6656091644675,
+            "ttft_ms": 43.595006062332686,
+            "tpot_ms": 3.549718822834914,
+            "itl_ms": 3.667598986761132,
+            "e2e_ms": 494.40929656236676
+          },
+          "throughput_samples": [
+            1128.193329182889,
+            1033.6656091644675,
+            1025.8027015580587
+          ],
+          "whole_device_peak_mib": 5132
+        },
+        "flashinfer": {
+          "median": {
+            "out_tok_s": 960.3792010757634,
+            "ttft_ms": 44.23762362500838,
+            "tpot_ms": 3.8418322942915237,
+            "itl_ms": 3.967592685335139,
+            "e2e_ms": 532.1503250000319
+          },
+          "throughput_samples": [
+            960.3792010757634,
+            956.1414423565994,
+            1017.7954380947269
+          ],
+          "whole_device_peak_mib": 4984
+        }
+      },
+      "throughput_pi_over_flashinfer": 1.076309865943174
+    },
+    {
+      "model": "Qwen3-0.6B",
+      "workload": {
+        "in": 1500,
+        "out": 128,
+        "concurrency": 4,
+        "shared": 0
+      },
+      "modes": {
+        "pi": {
+          "median": {
+            "out_tok_s": 713.18175559136,
+            "ttft_ms": 112.1789750001767,
+            "tpot_ms": 4.750891193404953,
+            "itl_ms": 4.876111348475478,
+            "e2e_ms": 715.5421565626057
+          },
+          "throughput_samples": [
+            757.56981692306,
+            713.18175559136,
+            705.3029576629
+          ],
+          "whole_device_peak_mib": 5132
+        },
+        "flashinfer": {
+          "median": {
+            "out_tok_s": 682.0564812050154,
+            "ttft_ms": 111.88738974999524,
+            "tpot_ms": 5.010145642225193,
+            "itl_ms": 5.168938874798328,
+            "e2e_ms": 748.1758863125947
+          },
+          "throughput_samples": [
+            682.0564812050154,
+            648.8291691991134,
+            700.8549921347912
+          ],
+          "whole_device_peak_mib": 4984
+        }
+      },
+      "throughput_pi_over_flashinfer": 1.0456344529288166
+    },
+    {
+      "model": "Qwen3-0.6B",
+      "workload": {
+        "in": 512,
+        "out": 128,
+        "concurrency": 4,
+        "shared": 384
+      },
+      "modes": {
+        "pi": {
+          "median": {
+            "out_tok_s": 1235.2177949106367,
+            "ttft_ms": 19.297011937567277,
+            "tpot_ms": 3.1141472903544765,
+            "itl_ms": 3.951769499642944,
+            "e2e_ms": 413.6921940000775
+          },
+          "throughput_samples": [
+            1269.4441254112496,
+            1235.2177949106367,
+            1164.2812855012176
+          ],
+          "whole_device_peak_mib": 5132
+        },
+        "flashinfer": {
+          "median": {
+            "out_tok_s": 1164.2681345552114,
+            "ttft_ms": 20.641555749875806,
+            "tpot_ms": 3.3004407775584825,
+            "itl_ms": 4.478848140412939,
+            "e2e_ms": 439.0782443125545
+          },
+          "throughput_samples": [
+            1164.2681345552114,
+            1120.3771124590025,
+            1166.5033518305756
+          ],
+          "whole_device_peak_mib": 4984
+        }
+      },
+      "throughput_pi_over_flashinfer": 1.0609392787190988
+    },
+    {
+      "model": "Qwen3-1.7B",
+      "workload": {
+        "in": 64,
+        "out": 64,
+        "concurrency": 1,
+        "shared": 0
+      },
+      "modes": {
+        "pi": {
+          "median": {
+            "out_tok_s": 145.16657375890176,
+            "ttft_ms": 10.209401499992055,
+            "tpot_ms": 6.833464618057045,
+            "itl_ms": 6.831617595237853,
+            "e2e_ms": 440.71767243758586
+          },
+          "throughput_samples": [
+            145.16657375890176,
+            141.43316578492457,
+            161.1152989821597
+          ],
+          "whole_device_peak_mib": 8172
+        },
+        "flashinfer": {
+          "median": {
+            "out_tok_s": 148.6310325034806,
+            "ttft_ms": 10.093038500087914,
+            "tpot_ms": 6.673786394842518,
+            "itl_ms": 6.67189227381042,
+            "e2e_ms": 430.4450153750281
+          },
+          "throughput_samples": [
+            149.18714225118495,
+            138.65041975780068,
+            148.6310325034806
+          ],
+          "whole_device_peak_mib": 8070
+        }
+      },
+      "throughput_pi_over_flashinfer": 0.9766908788412156
+    },
+    {
+      "model": "Qwen3-1.7B",
+      "workload": {
+        "in": 512,
+        "out": 128,
+        "concurrency": 4,
+        "shared": 0
+      },
+      "modes": {
+        "pi": {
+          "median": {
+            "out_tok_s": 478.2849088040529,
+            "ttft_ms": 97.56439856255383,
+            "tpot_ms": 7.649400103838254,
+            "itl_ms": 7.658421435189397,
+            "e2e_ms": 1069.0382117500121
+          },
+          "throughput_samples": [
+            474.67114378709704,
+            478.2849088040529,
+            490.70232826421955
+          ],
+          "whole_device_peak_mib": 8172
+        },
+        "flashinfer": {
+          "median": {
+            "out_tok_s": 449.6662371457427,
+            "ttft_ms": 99.29454968749951,
+            "tpot_ms": 8.170517782973297,
+            "itl_ms": 8.17221797833603,
+            "e2e_ms": 1136.9503081251082
+          },
+          "throughput_samples": [
+            469.63103282661183,
+            447.61061061909595,
+            449.6662371457427
+          ],
+          "whole_device_peak_mib": 8070
+        }
+      },
+      "throughput_pi_over_flashinfer": 1.0636442527683807
+    },
+    {
+      "model": "Qwen3-1.7B",
+      "workload": {
+        "in": 1500,
+        "out": 128,
+        "concurrency": 4,
+        "shared": 0
+      },
+      "modes": {
+        "pi": {
+          "median": {
+            "out_tok_s": 357.9109270392741,
+            "ttft_ms": 234.9912865624333,
+            "tpot_ms": 9.37769824754003,
+            "itl_ms": 9.38100519300899,
+            "e2e_ms": 1425.9589640000172
+          },
+          "throughput_samples": [
+            356.6333281588248,
+            357.9109270392741,
+            368.09851600318007
+          ],
+          "whole_device_peak_mib": 8172
+        },
+        "flashinfer": {
+          "median": {
+            "out_tok_s": 339.20434462675644,
+            "ttft_ms": 241.8555811249803,
+            "tpot_ms": 9.942320704233117,
+            "itl_ms": 9.945628631215431,
+            "e2e_ms": 1504.5303105625862
+          },
+          "throughput_samples": [
+            354.6291525256104,
+            339.20434462675644,
+            333.77704036349013
+          ],
+          "whole_device_peak_mib": 8070
+        }
+      },
+      "throughput_pi_over_flashinfer": 1.055148416312596
+    },
+    {
+      "model": "Qwen3-1.7B",
+      "workload": {
+        "in": 512,
+        "out": 128,
+        "concurrency": 4,
+        "shared": 384
+      },
+      "modes": {
+        "pi": {
+          "median": {
+            "out_tok_s": 540.382943206498,
+            "ttft_ms": 44.3579548125399,
+            "tpot_ms": 7.103593871555514,
+            "itl_ms": 7.099974362695661,
+            "e2e_ms": 946.5194216876966
+          },
+          "throughput_samples": [
+            526.1574180109915,
+            540.382943206498,
+            541.8815808903219
+          ],
+          "whole_device_peak_mib": 8172
+        },
+        "flashinfer": {
+          "median": {
+            "out_tok_s": 515.8381614148104,
+            "ttft_ms": 45.12977918750494,
+            "tpot_ms": 7.451803130904649,
+            "itl_ms": 7.449188071849833,
+            "e2e_ms": 991.5087768123954
+          },
+          "throughput_samples": [
+            573.907876996315,
+            515.8381614148104,
+            512.7400685052465
+          ],
+          "whole_device_peak_mib": 8070
+        }
+      },
+      "throughput_pi_over_flashinfer": 1.047582330326953
+    }
+  ]
+}

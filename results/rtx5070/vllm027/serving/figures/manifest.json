@@ -1,0 +1,110 @@
+{
+  "source": "/home/yliangh/projects/pi-attn/results/rtx5070/vllm027/serving/summary.json",
+  "source_sha256": "3912da8fe108e9ae17a7d3d5252ae4feb309063bf6e2a83eb6808842696ea998",
+  "script_sha256": "ef7bc09452d18a60ea0505e386961c66b7711eede4df401c8ecb3d7573ac8585",
+  "matplotlib": "3.10.8",
+  "workload_selection_sha256": "4820a39334e50f9b141db96ea170468c86e50bb15238ebc991c0ad99bf7c40be",
+  "workloads": {
+    "W1": {
+      "input_tokens": 64,
+      "output_tokens": 64,
+      "concurrency": 1,
+      "sampled": false
+    },
+    "W2": {
+      "input_tokens": 64,
+      "output_tokens": 128,
+      "concurrency": 16,
+      "sampled": false
+    },
+    "W3": {
+      "input_tokens": 512,
+      "output_tokens": 128,
+      "concurrency": 4,
+      "sampled": false
+    },
+    "W4": {
+      "input_tokens": 1500,
+      "output_tokens": 128,
+      "concurrency": 4,
+      "sampled": false
+    },
+    "W5": {
+      "input_tokens": 512,
+      "output_tokens": 128,
+      "concurrency": 4,
+      "sampled": true
+    }
+  },
+  "font": "DejaVuSerif.ttf",
+  "font_sha256": "107244956e9962b9e96faccdc551825e0ae0898ae13737133e1b921a2fd35ffa",
+  "models": [
+    "Qwen3-0.6B",
+    "Qwen3-1.7B"
+  ],
+  "layout": "3 rows × 2 columns",
+  "size_inches": [
+    7.2,
+    7.6
+  ],
+  "png_dpi": 600,
+  "shared_y_ticks": {
+    "throughput": [
+      0.0,
+      1000.0,
+      2000.0,
+      3000.0,
+      4000.0,
+      5000.0
+    ],
+    "memory": [
+      0.0,
+      2.0,
+      4.0,
+      6.0,
+      8.0
+    ],
+    "ttft_p50": [
+      0.0,
+      50.0,
+      100.0,
+      150.0,
+      200.0
+    ],
+    "ttft_p99": [
+      0.0,
+      100.0,
+      200.0,
+      300.0,
+      400.0,
+      500.0
+    ],
+    "tpot_p50": [
+      0.0,
+      5.0,
+      10.0,
+      15.0,
+      20.0
+    ],
+    "tpot_p99": [
+      0.0,
+      5.0,
+      10.0,
+      15.0,
+      20.0
+    ]
+  },
+  "plotted_values": 156,
+  "throughput_error_bars": "3-round minimum and maximum, not confidence intervals",
+  "latency": "p50/p99 of 192 pooled requests per mode/workload; no error bars",
+  "memory": "maximum whole-GPU memory usage over 3 original full runs, measured at 1 Hz; includes startup/capture; not recomputed for selected workloads",
+  "files": {
+    "qwen3-0.6b-serving.pdf": "b332fc3722a933fe26be190303b18a1ef465c5309ebc22f44d71760892399bd4",
+    "qwen3-0.6b-serving.svg": "7c3af7b61de27e63ccdcb585e3fbc01b57170c3cb7c346e7008c0bd6dba7d1a4",
+    "qwen3-0.6b-serving.png": "f9b3262c89c50a7c1c6c1b426e0be1dad9cdde7b3f027f773bb9f98ac65148ac",
+    "qwen3-1.7b-serving.pdf": "460813d5452a365f6461525396001e7d8c1bc0ea84465ab4f59665be76314b53",
+    "qwen3-1.7b-serving.svg": "b733d2a5a3bd422463402554792366bd41f134b5b1751f0b2575b1523d3cdfda",
+    "qwen3-1.7b-serving.png": "21c82d4a877ccb6a3db58ecb6fb2c902556af2dfa8dd8d85d06797bca3d6f7ba",
+    "plot-data.csv": "f385324f4ca4521575a934f9dcc052ff2a1be401cd9e6421d9ee12fb478a3876"
+  }
+}

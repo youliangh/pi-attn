@@ -1,0 +1,208 @@
+{
+  "complete": true,
+  "models": [
+    "Qwen3-0.6B",
+    "Qwen3-1.7B"
+  ],
+  "log_timezone": "America/New_York",
+  "timestamp_precision_seconds": 1,
+  "note": "Subsecond boundary overlaps are reported separately; timestamps alone cannot resolve their ordering. PI tuning is independently checked by exact before/after state.",
+  "rows": [
+    {
+      "file": "Qwen3-0.6B/native/bench-0/benchmark.json",
+      "jit_warnings": []
+    },
+    {
+      "file": "Qwen3-0.6B/native/bench-1/benchmark.json",
+      "jit_warnings": []
+    },
+    {
+      "file": "Qwen3-0.6B/native/bench-2/benchmark.json",
+      "jit_warnings": []
+    },
+    {
+      "file": "Qwen3-0.6B/batch-invariant/bench-0/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T22:59:29+00:00",
+          "kernel": "matmul_kernel_persistent",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        },
+        {
+          "utc": "2026-11-11T22:59:29+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-0.6B/batch-invariant/bench-1/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:03:04+00:00",
+          "kernel": "matmul_kernel_persistent",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        },
+        {
+          "utc": "2026-11-11T23:03:04+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-0.6B/batch-invariant/bench-2/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:10:22+00:00",
+          "kernel": "matmul_kernel_persistent",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        },
+        {
+          "utc": "2026-11-11T23:10:22+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-0.6B/pi/bench-0/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:01:52+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-0.6B/pi/bench-1/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:05:27+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-0.6B/pi/bench-2/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:07:58+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-1.7B/native/bench-0/benchmark.json",
+      "jit_warnings": []
+    },
+    {
+      "file": "Qwen3-1.7B/native/bench-1/benchmark.json",
+      "jit_warnings": []
+    },
+    {
+      "file": "Qwen3-1.7B/native/bench-2/benchmark.json",
+      "jit_warnings": []
+    },
+    {
+      "file": "Qwen3-1.7B/batch-invariant/bench-0/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:14:46+00:00",
+          "kernel": "matmul_kernel_persistent",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        },
+        {
+          "utc": "2026-11-11T23:14:46+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-1.7B/batch-invariant/bench-1/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:21:05+00:00",
+          "kernel": "matmul_kernel_persistent",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        },
+        {
+          "utc": "2026-11-11T23:21:05+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-1.7B/batch-invariant/bench-2/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:34:10+00:00",
+          "kernel": "matmul_kernel_persistent",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        },
+        {
+          "utc": "2026-11-11T23:34:10+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-1.7B/pi/bench-0/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:18:56+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-1.7B/pi/bench-1/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:25:14+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    },
+    {
+      "file": "Qwen3-1.7B/pi/bench-2/benchmark.json",
+      "jit_warnings": [
+        {
+          "utc": "2026-11-11T23:29:53+00:00",
+          "kernel": "_log_softmax_kernel",
+          "timed_workload_matches": [],
+          "same_second_boundary_overlap": []
+        }
+      ]
+    }
+  ]
+}

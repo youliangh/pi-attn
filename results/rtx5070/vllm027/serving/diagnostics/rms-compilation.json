@@ -1,0 +1,111 @@
+{
+  "observation": "The compiled wrapper declares eps as fp64. Cached native Triton programs contain fp32 and fp64 epsilon signatures; fp64 promotes RMS normalization arithmetic.",
+  "kernels": [
+    {
+      "path": "env/cache/vllm027/triton/G7O22U32A4UF34G276PHTKV3QLU5KAVR7G7YKCAAFYPK2HBGTRUA/_rms_norm_kernel.ttir",
+      "sha256": "f6fa183808b59789cc71614a4ca40fd021818ca49525d63925d22a258e173407",
+      "epsilon_type": "f64",
+      "uses_f64_arithmetic": true,
+      "num_warps": 4,
+      "enable_fp_fusion": true,
+      "arithmetic_excerpt": [
+        "tt.func public @_rms_norm_kernel(%input_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"input_ptr\"(#loc)), %weight_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"weight_ptr\"(#loc)), %output_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"output_ptr\"(#loc)), %input_row_stride: i32 loc(\"input_row_stride\"(#loc)), %output_row_stride: i32 loc(\"output_row_stride\"(#loc)), %n_cols: i32 loc(\"n_cols\"(#loc)), %eps: f64 loc(\"eps\"(#loc))) attributes {noinline = false} {",
+        "%rms = arith.extf %mean_sq_8 : tensor<1xf32> to tensor<1xf64> loc(#loc67)",
+        "%rms_9 = tt.splat %eps : f64 -> tensor<1xf64> loc(#loc67)",
+        "%rms_10 = arith.addf %rms, %rms_9 : tensor<1xf64> loc(#loc67)",
+        "%rms_11 = math.sqrt %rms_10 : tensor<1xf64> loc(#loc68)",
+        "%inv_rms_12 = arith.divf %inv_rms, %rms_11 : tensor<1xf64> loc(#loc48)",
+        "%output_f32_18 = tt.broadcast %inv_rms_12 : tensor<1xf64> -> tensor<1024xf64> loc(#loc75)"
+      ]
+    },
+    {
+      "path": "env/cache/vllm027/triton/6OHOVXEEIYPERLZUW4DMDZA4BEJD3ACJKS776OWX7TXHPGC6EUNQ/_rms_norm_kernel.ttir",
+      "sha256": "fd4800e840272019a5da16e548872c01c0712443bff4f98aeae32dfa4b65e74a",
+      "epsilon_type": "f32",
+      "uses_f64_arithmetic": false,
+      "num_warps": 4,
+      "enable_fp_fusion": true,
+      "arithmetic_excerpt": [
+        "tt.func public @_rms_norm_kernel(%input_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"input_ptr\"(#loc)), %weight_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"weight_ptr\"(#loc)), %output_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"output_ptr\"(#loc)), %input_row_stride: i32 {tt.divisibility = 16 : i32} loc(\"input_row_stride\"(#loc)), %output_row_stride: i32 {tt.divisibility = 16 : i32} loc(\"output_row_stride\"(#loc)), %n_cols: i32 {tt.divisibility = 16 : i32} loc(\"n_cols\"(#loc)), %eps: f32 loc(\"eps\"(#loc))) attributes {noinline = false} {",
+        "%rms_10 = arith.addf %mean_sq_9, %rms : tensor<1xf32> loc(#loc71)",
+        "%rms_11 = math.sqrt %rms_10 : tensor<1xf32> loc(#loc72)",
+        "%inv_rms_12 = arith.divf %inv_rms, %rms_11 : tensor<1xf32> loc(#loc52)",
+        "%output_f32 = tt.broadcast %inv_rms_12 : tensor<1xf32> -> tensor<1024xf32> loc(#loc79)"
+      ]
+    },
+    {
+      "path": "env/cache/vllm027/triton/QYZK4ROTRJKTPCCUANUMGIHNEW5MQDSW3T3NHFVAWS3J6L6D437A/_rms_norm_kernel.ttir",
+      "sha256": "53123216e7e1613e1506f4736c82f553bee564b533efc4d888fae38ed1b58c45",
+      "epsilon_type": "f64",
+      "uses_f64_arithmetic": true,
+      "num_warps": 4,
+      "enable_fp_fusion": true,
+      "arithmetic_excerpt": [
+        "tt.func public @_rms_norm_kernel(%input_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"input_ptr\"(#loc)), %weight_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"weight_ptr\"(#loc)), %output_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"output_ptr\"(#loc)), %input_row_stride: i32 {tt.divisibility = 16 : i32} loc(\"input_row_stride\"(#loc)), %output_row_stride: i32 {tt.divisibility = 16 : i32} loc(\"output_row_stride\"(#loc)), %n_cols: i32 {tt.divisibility = 16 : i32} loc(\"n_cols\"(#loc)), %eps: f64 loc(\"eps\"(#loc))) attributes {noinline = false} {",
+        "%rms = arith.extf %mean_sq_8 : tensor<1xf32> to tensor<1xf64> loc(#loc67)",
+        "%rms_9 = tt.splat %eps : f64 -> tensor<1xf64> loc(#loc67)",
+        "%rms_10 = arith.addf %rms, %rms_9 : tensor<1xf64> loc(#loc67)",
+        "%rms_11 = math.sqrt %rms_10 : tensor<1xf64> loc(#loc68)",
+        "%inv_rms_12 = arith.divf %inv_rms, %rms_11 : tensor<1xf64> loc(#loc48)",
+        "%output_f32_18 = tt.broadcast %inv_rms_12 : tensor<1xf64> -> tensor<1024xf64> loc(#loc75)"
+      ]
+    },
+    {
+      "path": "env/cache/vllm027/triton/LPOP4ZWD7JFRMP6DR2AGYF3DEHFBEIX3MS32LPZUL2GCTOKYFJQQ/_rms_norm_kernel.ttir",
+      "sha256": "3ab9d40291c4c1e04972081d77c7dee23fac84de2079985592b7fe526afefa45",
+      "epsilon_type": "f64",
+      "uses_f64_arithmetic": true,
+      "num_warps": 4,
+      "enable_fp_fusion": true,
+      "arithmetic_excerpt": [
+        "tt.func public @_rms_norm_kernel(%input_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"input_ptr\"(#loc)), %weight_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"weight_ptr\"(#loc)), %output_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"output_ptr\"(#loc)), %input_row_stride: i32 {tt.divisibility = 16 : i32} loc(\"input_row_stride\"(#loc)), %output_row_stride: i32 {tt.divisibility = 16 : i32} loc(\"output_row_stride\"(#loc)), %n_cols: i32 {tt.divisibility = 16 : i32} loc(\"n_cols\"(#loc)), %eps: f64 loc(\"eps\"(#loc))) attributes {noinline = false} {",
+        "%rms = arith.extf %mean_sq_9 : tensor<1xf32> to tensor<1xf64> loc(#loc71)",
+        "%rms_10 = tt.splat %eps : f64 -> tensor<1xf64> loc(#loc71)",
+        "%rms_11 = arith.addf %rms, %rms_10 : tensor<1xf64> loc(#loc71)",
+        "%rms_12 = math.sqrt %rms_11 : tensor<1xf64> loc(#loc72)",
+        "%inv_rms_13 = arith.divf %inv_rms, %rms_12 : tensor<1xf64> loc(#loc52)",
+        "%output_f32_19 = tt.broadcast %inv_rms_13 : tensor<1xf64> -> tensor<1024xf64> loc(#loc79)"
+      ]
+    },
+    {
+      "path": "env/cache/vllm027/triton/MIXCYQMMWTOTON6KSD2GLEKA4YKYQ4VSFCXVUJI3F537YEEPN2QA/_rms_norm_kernel.ttir",
+      "sha256": "c079f6e3b3179a18dd1b587b690f5c2fd0bc3706c7ad53e094997005ed1773ed",
+      "epsilon_type": "f32",
+      "uses_f64_arithmetic": false,
+      "num_warps": 4,
+      "enable_fp_fusion": true,
+      "arithmetic_excerpt": [
+        "tt.func public @_rms_norm_kernel(%input_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"input_ptr\"(#loc)), %weight_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"weight_ptr\"(#loc)), %output_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"output_ptr\"(#loc)), %input_row_stride: i32 {tt.divisibility = 16 : i32} loc(\"input_row_stride\"(#loc)), %output_row_stride: i32 {tt.divisibility = 16 : i32} loc(\"output_row_stride\"(#loc)), %n_cols: i32 {tt.divisibility = 16 : i32} loc(\"n_cols\"(#loc)), %eps: f32 loc(\"eps\"(#loc))) attributes {noinline = false} {",
+        "%rms_9 = arith.addf %mean_sq_8, %rms : tensor<1xf32> loc(#loc67)",
+        "%rms_10 = math.sqrt %rms_9 : tensor<1xf32> loc(#loc68)",
+        "%inv_rms_11 = arith.divf %inv_rms, %rms_10 : tensor<1xf32> loc(#loc48)",
+        "%output_f32 = tt.broadcast %inv_rms_11 : tensor<1xf32> -> tensor<1024xf32> loc(#loc75)"
+      ]
+    },
+    {
+      "path": "env/cache/vllm027/triton/XVUMYQF4TAJZJNWLJKUDQHCBVY2VITTPZZJI7HDKUNCTRQAFPKCQ/_rms_norm_kernel.ttir",
+      "sha256": "78163daae1d36b47edc753038ae6fb8f0d925ce5e83fbe064c78f3f148133439",
+      "epsilon_type": "f64",
+      "uses_f64_arithmetic": true,
+      "num_warps": 4,
+      "enable_fp_fusion": true,
+      "arithmetic_excerpt": [
+        "tt.func public @_rms_norm_kernel(%input_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"input_ptr\"(#loc)), %weight_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"weight_ptr\"(#loc)), %output_ptr: !tt.ptr<bf16> {tt.divisibility = 16 : i32} loc(\"output_ptr\"(#loc)), %input_row_stride: i32 loc(\"input_row_stride\"(#loc)), %output_row_stride: i32 loc(\"output_row_stride\"(#loc)), %n_cols: i32 loc(\"n_cols\"(#loc)), %eps: f64 loc(\"eps\"(#loc))) attributes {noinline = false} {",
+        "%rms = arith.extf %mean_sq_9 : tensor<1xf32> to tensor<1xf64> loc(#loc71)",
+        "%rms_10 = tt.splat %eps : f64 -> tensor<1xf64> loc(#loc71)",
+        "%rms_11 = arith.addf %rms, %rms_10 : tensor<1xf64> loc(#loc71)",
+        "%rms_12 = math.sqrt %rms_11 : tensor<1xf64> loc(#loc72)",
+        "%inv_rms_13 = arith.divf %inv_rms, %rms_12 : tensor<1xf64> loc(#loc52)",
+        "%output_f32_19 = tt.broadcast %inv_rms_13 : tensor<1xf64> -> tensor<1024xf64> loc(#loc79)"
+      ]
+    }
+  ],
+  "compiled_wrapper": {
+    "path": "env/cache/vllm027/serving/pi/Qwen3-0.6B/base/inductor/me/cmekxm3tl7obpehr37ykmllriddpdunsy4fu75rswfszwzgec24z.py",
+    "sha256": "3f173818f018d7921037f15071a8998909cd4bc2554e26e1057c52cebd6b21c8",
+    "signature_evidence": [
+      "triton_meta={'signature': {'input_ptr': '*bf16', 'weight_ptr': '*bf16', 'output_ptr': '*bf16', 'input_row_stride': 'i32', 'output_row_stride': 'i32', 'n_cols': 'i32', 'eps': 'fp64', 'BLOCK_SIZE': 'constexpr', 'HAS_WEIGHT': 'constexpr'}, 'device': DeviceProperties(type='cuda', index=0, multi_processor_count=48, cc=120, major=12, regs_per_multiprocessor=65536, max_threads_per_multi_processor=1536, max_threads_per_block=1024, warp_size=32), 'constants': {'BLOCK_SIZE': 1024, 'HAS_WEIGHT': True}, 'configs': [{(0,): [['tt.divisibility', 16]], (1,): [['tt.divisibility', 16]], (2,): [['tt.divisibility', 16]], (3,): [['tt.divisibility', 16]], (4,): [['tt.divisibility', 16]], (5,): [['tt.divisibility', 16]]}]},",
+      "triton_meta={'signature': {'input_ptr': '*bf16', 'weight_ptr': '*bf16', 'output_ptr': '*bf16', 'input_row_stride': 'i32', 'output_row_stride': 'i32', 'n_cols': 'i32', 'eps': 'fp64', 'BLOCK_SIZE': 'constexpr', 'HAS_WEIGHT': 'constexpr'}, 'device': DeviceProperties(type='cuda', index=0, multi_processor_count=48, cc=120, major=12, regs_per_multiprocessor=65536, max_threads_per_multi_processor=1536, max_threads_per_block=1024, warp_size=32), 'constants': {'BLOCK_SIZE': 1024, 'HAS_WEIGHT': True}, 'configs': [{(0,): [['tt.divisibility', 16]], (1,): [['tt.divisibility', 16]], (2,): [['tt.divisibility', 16]], (3,): [['tt.divisibility', 16]], (4,): [['tt.divisibility', 16]], (5,): [['tt.divisibility', 16]]}]},"
+    ]
+  }
+}

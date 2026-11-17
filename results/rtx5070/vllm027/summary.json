@@ -1,0 +1,141 @@
+{
+  "gemm_checks": {
+    "pi_native": {
+      "comparisons": 960,
+      "elements": 90892800,
+      "different_elements": 0,
+      "failed_comparisons": 0,
+      "failed_shape_seed_cases": 0
+    },
+    "vllm_active_cublaslt": {
+      "comparisons": 960,
+      "elements": 90892800,
+      "different_elements": 0,
+      "failed_comparisons": 0,
+      "failed_shape_seed_cases": 0
+    },
+    "vllm_triton_explicit": {
+      "comparisons": 960,
+      "elements": 90892800,
+      "different_elements": 0,
+      "failed_comparisons": 0,
+      "failed_shape_seed_cases": 0
+    },
+    "pi_all_candidates": {
+      "comparisons": 14637,
+      "elements": 1301296896,
+      "different_elements": 0,
+      "failed_comparisons": 0,
+      "failed_shape_seed_cases": 0
+    },
+    "pi_all_candidates_fp32": {
+      "comparisons": 14637,
+      "elements": 1301296896,
+      "different_elements": 0,
+      "failed_comparisons": 0,
+      "failed_shape_seed_cases": 0
+    },
+    "stock_cublas": {
+      "comparisons": 960,
+      "elements": 90892800,
+      "different_elements": 480160,
+      "failed_comparisons": 844,
+      "failed_shape_seed_cases": 29
+    }
+  },
+  "attention_checks": {
+    "pi": {
+      "comparisons": 13008,
+      "elements": 441937920,
+      "different_elements": 0,
+      "failed_comparisons": 0
+    },
+    "vllm_triton": {
+      "comparisons": 12864,
+      "elements": 432482304,
+      "different_elements": 0,
+      "failed_comparisons": 0
+    },
+    "vllm_flash_attention": {
+      "comparisons": 12864,
+      "elements": 432482304,
+      "different_elements": 0,
+      "failed_comparisons": 0
+    }
+  },
+  "gemm_pi_over_baseline_geomean": {
+    "vllm_active_cublaslt": 0.9207006255843433,
+    "vllm_triton_explicit": 0.4891425909552801
+  },
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 5070",
+    "capability": [
+      12,
+      0
+    ],
+    "packages": {
+      "vllm": "0.27.0",
+      "torch": "2.13.0+cu130",
+      "triton": "3.7.1",
+      "flashinfer-python": "0.6.16.post3"
+    },
+    "lock_sha256": "5a3eb330c1c7144c54d01d3973f41046fda8f99edcdaab91892e483baccab281",
+    "batch_invariant_source_sha256": "2cfcd9ac7d9b954155f012ba44ac21f970ea28ab770248037a00988725176f98",
+    "batch_invariant_enabled": true,
+    "sm80_dispatch": false,
+    "blas_library": "_BlasBackend.Cublaslt",
+    "cublas_workspace": ":16:8",
+    "cublaslt_workspace": "1",
+    "bf16_reduced_precision": false
+  },
+  "report_generation_source_sha256": {
+    "benchmarks/vllm027/report.py": "62fbdd53b57d3e225a294d8458243dd04a29dae1cc94eb856bbc66ecd4d5cf55",
+    "benchmarks/vllm027/compare_attention.py": "c93039999faaadaa5d8f9d370ed3861ae962e408d16a05f0191a0fde661f362d",
+    "benchmarks/vllm027/test_adapter.py": "f8f83f8b5d2175834da58cb479a0cf46e46af66c1dc1b0ec1a3b7feec546f92e",
+    "benchmarks/vllm027/compare_gemm.py": "4f615412cc54e6e854b2e3573689c98112ce6a252ee6b3a33be9b2edb73c032c",
+    "benchmarks/vllm027/serve.py": "ca4e9ca374d039be7411342e8dbe137f599335f2e4d545be52efb720a2189bb4",
+    "benchmarks/vllm027/common.py": "93666275f5da1bba300ffb414fa2de2c392e7f8ebf1861ada188755b28e209f3",
+    "benchmarks/vllm027/serve.sh": "c1543ce6d3c4e40cbf986b90f44e9f12fad6c8f1560be50433548d3b42b9a27b",
+    "benchmarks/vllm027/run.sh": "54c3c679b3a71eed138fffd744f6e3f9d166ba13abd73b31c80ccd91b910f8cd",
+    "benchmarks/vllm027/env.sh": "e1cc51c0ab14310ff10b2fd2721d71f83aefe64e721f8a8df408b260e93079dc",
+    "benchmarks/vllm027/pyproject.toml": "4e2061cb9e548cf5e134f7c0c48492fd00dc55390667f51616f87128d1950b22",
+    "benchmarks/vllm027/uv.lock": "c4065b63fef2559ab4ecb3537445b6021ff97e159ba65c1208a8ce081a5f1950",
+    "llm_infer_rust/src/kernels/pi/pi_logprob.cuh": "860bab907aad44c1eb7a4f47900c5468fd305e9f3ef82a516a91355bcf93d71d",
+    "llm_infer_rust/src/kernels/pi/pi_attn.cuh": "0b78e33663b45322f2100f7815f7840353bf7f40c96dd1e6ddd1c66d7674a4ee",
+    "llm_infer_rust/src/kernels/pi/gemm_cutlass.cuh": "0fd6e80b856f48082b6727e05fd85f4f781eb998b79b1543c659c54b095b859b",
+    "llm_infer_rust/src/kernels/pi/pi_stream.cpp": "9d649f7c8f30c0cb437b741a7f25dcc341d1836f929b45b98ba22c3acc434e6f",
+    "llm_infer_rust/src/kernels/pi/pi_launch.cu": "f725fa52497c83a65f8bc5141178ee666982fa69f773e6d406f08e37db08290a",
+    "llm_infer_rust/src/kernels/pi/gemm_dispatch.cuh": "27db3b08d9ec4cc633e6fc923e86d9fc49a19e4e2178042e11b5463c483f24be",
+    "llm_infer_rust/src/kernels/pi/pi_attn_kernels.cu": "95c972fc23c6c71083b71b0a42c5bb1f4d9b40ab43cf983e3dbddfb0e82f2d52",
+    "llm_infer_rust/src/kernels/pi/gemm_inv.cuh": "596b8d01cfd10588179acdcfbebdef691e1238160969d718d0e0322ad9da51e9",
+    "kernels/build.py": "9457e547a9ba8c89017daa358f8e67f75dd94cdfa30bfae0c9b6cfe36f2f6888",
+    "kernels/test_gemm.py": "ac85affaba8f8e406af6efc7fcab5209f584f8318f45d0267362d3c63e9a6658",
+    "kernels/gemm_torch.cu": "624baca847428d82ddc2c18aafd441151fee5239519c526309e05de8bba64fb8",
+    "kernels/pi_attn_torch.cu": "4dfec3effde5b899e3b16961a7a23a03d103a6ad0fd8b520109eccfa3a77a3a1",
+    "kernels/pi_vllm_torch.cu": "09186fdf6c4575cf5e377ac024044b08789d9c36e31de59c3f62fc4a1d084921"
+  },
+  "measurement_source_sha256": {
+    "benchmarks/vllm027/report.py": "c6ea264ea699a53eae5c730f8da7503c5287e3b02dcc01802d7a48bdc535476c",
+    "benchmarks/vllm027/compare_attention.py": "c93039999faaadaa5d8f9d370ed3861ae962e408d16a05f0191a0fde661f362d",
+    "benchmarks/vllm027/compare_gemm.py": "4f615412cc54e6e854b2e3573689c98112ce6a252ee6b3a33be9b2edb73c032c",
+    "benchmarks/vllm027/common.py": "f48827d5831a057f020447d8163f0c7f83665ea639f5ef0ed3ba0a00ca83e853",
+    "benchmarks/vllm027/run.sh": "54c3c679b3a71eed138fffd744f6e3f9d166ba13abd73b31c80ccd91b910f8cd",
+    "benchmarks/vllm027/env.sh": "e1cc51c0ab14310ff10b2fd2721d71f83aefe64e721f8a8df408b260e93079dc",
+    "benchmarks/vllm027/pyproject.toml": "baa9c7e31c1f76f5205a0f573cb913b0085e491d9eb771b96b1fd10f1f4761e1",
+    "benchmarks/vllm027/uv.lock": "5a3eb330c1c7144c54d01d3973f41046fda8f99edcdaab91892e483baccab281",
+    "llm_infer_rust/src/kernels/pi/pi_logprob.cuh": "860bab907aad44c1eb7a4f47900c5468fd305e9f3ef82a516a91355bcf93d71d",
+    "llm_infer_rust/src/kernels/pi/pi_attn.cuh": "0b78e33663b45322f2100f7815f7840353bf7f40c96dd1e6ddd1c66d7674a4ee",
+    "llm_infer_rust/src/kernels/pi/gemm_cutlass.cuh": "0fd6e80b856f48082b6727e05fd85f4f781eb998b79b1543c659c54b095b859b",
+    "llm_infer_rust/src/kernels/pi/pi_stream.cpp": "9d649f7c8f30c0cb437b741a7f25dcc341d1836f929b45b98ba22c3acc434e6f",
+    "llm_infer_rust/src/kernels/pi/pi_launch.cu": "f725fa52497c83a65f8bc5141178ee666982fa69f773e6d406f08e37db08290a",
+    "llm_infer_rust/src/kernels/pi/gemm_dispatch.cuh": "27db3b08d9ec4cc633e6fc923e86d9fc49a19e4e2178042e11b5463c483f24be",
+    "llm_infer_rust/src/kernels/pi/pi_attn_kernels.cu": "95c972fc23c6c71083b71b0a42c5bb1f4d9b40ab43cf983e3dbddfb0e82f2d52",
+    "llm_infer_rust/src/kernels/pi/gemm_inv.cuh": "596b8d01cfd10588179acdcfbebdef691e1238160969d718d0e0322ad9da51e9",
+    "kernels/build.py": "9457e547a9ba8c89017daa358f8e67f75dd94cdfa30bfae0c9b6cfe36f2f6888",
+    "kernels/test_gemm.py": "ac85affaba8f8e406af6efc7fcab5209f584f8318f45d0267362d3c63e9a6658",
+    "kernels/gemm_torch.cu": "624baca847428d82ddc2c18aafd441151fee5239519c526309e05de8bba64fb8",
+    "kernels/pi_attn_torch.cu": "4dfec3effde5b899e3b16961a7a23a03d103a6ad0fd8b520109eccfa3a77a3a1",
+    "kernels/pi_vllm_torch.cu": "f6e8250f89f27322180e3d0f460ce90e1ebf9f75dc728d5867230f24de302a14"
+  },
+  "path_correction": "vllm_active_cublaslt is the ATen microbenchmark, not the vLLM serving linear path"
+}

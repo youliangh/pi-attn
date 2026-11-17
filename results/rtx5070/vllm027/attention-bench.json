@@ -1,0 +1,270 @@
+{
+  "environment": {
+    "gpu": "NVIDIA GeForce RTX 5070",
+    "capability": [
+      12,
+      0
+    ],
+    "packages": {
+      "vllm": "0.27.0",
+      "torch": "2.13.0+cu130",
+      "triton": "3.7.1",
+      "flashinfer-python": "0.6.16.post3"
+    },
+    "lock_sha256": "5a3eb330c1c7144c54d01d3973f41046fda8f99edcdaab91892e483baccab281",
+    "batch_invariant_source_sha256": "2cfcd9ac7d9b954155f012ba44ac21f970ea28ab770248037a00988725176f98",
+    "batch_invariant_enabled": true,
+    "sm80_dispatch": false,
+    "blas_library": "_BlasBackend.Cublaslt",
+    "cublas_workspace": ":16:8",
+    "cublaslt_workspace": "1",
+    "bf16_reduced_precision": false
+  },
+  "sources": {
+    "triton_attention_sha256": "992a2bc892e2e2b43fbd3c8163816ccf7e97ced56cb542bd827adb0ddb2df9fa",
+    "flash_attention_version": 2,
+    "triton_batch_invariant": true,
+    "flash_attention_num_splits": 1
+  },
+  "page_size": 16,
+  "cases_q_kv": [
+    [
+      1,
+      1
+    ],
+    [
+      7,
+      31
+    ],
+    [
+      16,
+      33
+    ],
+    [
+      31,
+      65
+    ],
+    [
+      1,
+      513
+    ],
+    [
+      33,
+      1025
+    ],
+    [
+      65,
+      2049
+    ],
+    [
+      17,
+      8193
+    ]
+  ],
+  "rows": [
+    {
+      "kind": "decode",
+      "batch": 1,
+      "q_len": 1,
+      "prefix": 1023,
+      "kv_len": 1024,
+      "samples_us": {
+        "pi": [
+          14.102285993950707,
+          14.065143253122056,
+          14.151999992983683
+        ],
+        "vllm_triton": [
+          33.81314235074179,
+          33.84514259440559,
+          33.80342892238072
+        ],
+        "vllm_flash_attention": [
+          32.75028616189957,
+          32.72571414709091,
+          32.71600071872984
+        ]
+      },
+      "median_us": {
+        "pi": 14.102285993950707,
+        "vllm_triton": 33.81314235074179,
+        "vllm_flash_attention": 32.72571414709091
+      }
+    },
+    {
+      "kind": "decode",
+      "batch": 4,
+      "q_len": 1,
+      "prefix": 2047,
+      "kv_len": 2048,
+      "samples_us": {
+        "pi": [
+          56.015998125076294,
+          55.86879849433899,
+          55.849599838256836
+        ],
+        "vllm_triton": [
+          71.20479941368103,
+          71.25760018825531,
+          71.01280093193054
+        ],
+        "vllm_flash_attention": [
+          69.08320188522339,
+          69.25120055675507,
+          69.15520131587982
+        ]
+      },
+      "median_us": {
+        "pi": 55.86879849433899,
+        "vllm_triton": 71.20479941368103,
+        "vllm_flash_attention": 69.15520131587982
+      }
+    },
+    {
+      "kind": "decode",
+      "batch": 1,
+      "q_len": 1,
+      "prefix": 8191,
+      "kv_len": 8192,
+      "samples_us": {
+        "pi": [
+          56.801602244377136,
+          56.966400146484375,
+          57.08959996700287
+        ],
+        "vllm_triton": [
+          257.1552038192749,
+          257.3248028755188,
+          257.32799768447876
+        ],
+        "vllm_flash_attention": [
+          246.98081016540527,
+          246.37759923934937,
+          246.40320539474487
+        ]
+      },
+      "median_us": {
+        "pi": 56.966400146484375,
+        "vllm_triton": 257.3248028755188,
+        "vllm_flash_attention": 246.40320539474487
+      }
+    },
+    {
+      "kind": "prefill",
+      "batch": 1,
+      "q_len": 512,
+      "prefix": 0,
+      "kv_len": 512,
+      "samples_us": {
+        "pi": [
+          44.06857277665819,
+          44.360001172338215,
+          44.203428285462515
+        ],
+        "vllm_triton": [
+          42.371998940195354,
+          42.41200004305158,
+          42.61314443179539
+        ],
+        "vllm_flash_attention": [
+          35.12514276163919,
+          35.212572131838115,
+          35.15142840998513
+        ]
+      },
+      "median_us": {
+        "pi": 44.203428285462515,
+        "vllm_triton": 42.41200004305158,
+        "vllm_flash_attention": 35.15142840998513
+      }
+    },
+    {
+      "kind": "prefill",
+      "batch": 1,
+      "q_len": 2048,
+      "prefix": 0,
+      "kv_len": 2048,
+      "samples_us": {
+        "pi": [
+          380.26559352874756,
+          380.5367946624756,
+          380.1952004432678
+        ],
+        "vllm_triton": [
+          497.0304012298584,
+          487.93280124664307,
+          491.47119522094727
+        ],
+        "vllm_flash_attention": [
+          339.40800428390503,
+          338.57120275497437,
+          339.1975998878479
+        ]
+      },
+      "median_us": {
+        "pi": 380.26559352874756,
+        "vllm_triton": 491.47119522094727,
+        "vllm_flash_attention": 339.1975998878479
+      }
+    },
+    {
+      "kind": "prefill",
+      "batch": 4,
+      "q_len": 512,
+      "prefix": 0,
+      "kv_len": 512,
+      "samples_us": {
+        "pi": [
+          114.95360136032104,
+          115.8079981803894,
+          114.94320034980774
+        ],
+        "vllm_triton": [
+          139.5415961742401,
+          139.0944004058838,
+          140.39600491523743
+        ],
+        "vllm_flash_attention": [
+          97.83760011196136,
+          97.74639904499054,
+          97.74479866027832
+        ]
+      },
+      "median_us": {
+        "pi": 114.95360136032104,
+        "vllm_triton": 139.5415961742401,
+        "vllm_flash_attention": 97.74639904499054
+      }
+    },
+    {
+      "kind": "prefill",
+      "batch": 1,
+      "q_len": 128,
+      "prefix": 4096,
+      "kv_len": 4224,
+      "samples_us": {
+        "pi": [
+          105.42399883270264,
+          105.19680380821228,
+          105.06399869918823
+        ],
+        "vllm_triton": [
+          147.85760045051575,
+          147.8543996810913,
+          147.6960003376007
+        ],
+        "vllm_flash_attention": [
+          130.44960498809814,
+          130.43360114097595,
+          130.02560138702393
+        ]
+      },
+      "median_us": {
+        "pi": 105.19680380821228,
+        "vllm_triton": 147.8543996810913,
+        "vllm_flash_attention": 130.43360114097595
+      }
+    }
+  ],
+  "complete": true
+}

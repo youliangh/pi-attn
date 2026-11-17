@@ -14,19 +14,21 @@ Rust 版本的 mini-sglang 推理服务。目前支持本地 dense Qwen3 模型�
 
 ## 运行
 
-Python 构建与测试环境统一由根目录的 `pyproject.toml` 和 `uv.lock` 管理，默认环境为 `.venv`。先同步依赖：
+Python 构建与测试环境统一由 PI-Attn 仓库顶层的 `../pyproject.toml` 和 `../uv.lock` 管理，默认环境为 `../.venv`。以下命令在 `llm_infer_rust/` 目录执行：
 
 ```bash
 # macOS / CPU 环境
-uv sync --locked --group dev
+uv sync --project .. --locked --all-packages --group dev
 
 # Linux CUDA 环境，包含 FlashInfer 及其完整 Python 依赖
-uv sync --locked --extra cuda --group dev
+uv sync --project .. --locked --all-packages --extra cuda --group dev
 ```
 
-CUDA 环境后续执行 `uv sync` 或 `uv run` 时应保留 `--extra cuda`，否则 uv 的精确同步会移除该可选依赖。更新依赖时修改 `pyproject.toml`，执行 `uv lock`，再按对应环境执行上述同步命令。使用自定义 `VENV_DIR` 时，可通过 `UV_PROJECT_ENVIRONMENT=/path/to/venv uv sync ...` 同步同一份锁文件。
+CUDA 环境后续执行 `uv sync` 或 `uv run` 时应保留 `--extra cuda`，否则 uv 的精确同步会移除该可选依赖。更新依赖时修改声明该依赖的 `pyproject.toml`，执行 `uv lock --project ..`，再按对应环境执行上述同步命令。使用自定义 `VENV_DIR` 时，可通过 `UV_PROJECT_ENVIRONMENT=/path/to/venv uv sync ...` 同步同一份锁文件。
 
-本机可以用脚本编译并启动服务，默认构建 debug 版本、读取相邻 `mini-sglang/Qwen/Qwen3-0.6B` 模型：
+RTX 5070 请先按[顶层说明](../README.md#rtx-5070--wsl2-single-gpu)安装本机 profile，并 `source ../env.sh` 选择 CUDA 13.0 与 SM120。脚本复用已有 Rust 工具链。
+
+本机可以用脚本编译并启动服务，默认构建 debug 版本、读取 `../models/Qwen3-0.6B` 模型：
 
 ```bash
 ./scripts/run-server.sh
@@ -47,7 +49,7 @@ export SGLANG_BUILD_PROFILE=release
 ./scripts/run-server.sh --model-path /path/to/Qwen3-0.6B --port 8001 --max-seq-len 1024
 ```
 
-脚本使用项目的 `.venv` 查找 PyTorch/libtorch；需要使用其他虚拟环境时设置 `VENV_DIR`。也可以手动配置下文的 libtorch 环境后运行：
+脚本使用仓库顶层的 `.venv` 查找 PyTorch/libtorch；需要使用其他虚拟环境时设置 `VENV_DIR`。也可以手动配置下文的 libtorch 环境后运行：
 
 ```bash
 cargo run -- --model-path /path/to/Qwen3-0.6B --port 8000
@@ -67,9 +69,9 @@ Qwen3 的 CUDA BF16/FP16 prefill 在启动时捕获全部配置的分段图，�
 
 ### FlashInfer 分页 decode 与 prefill
 
-参考 SGLang 环境的 FlashInfer 版本固定为 `0.6.18`，由 `pyproject.toml` 的 Linux `cuda` extra 声明，`uv.lock` 锁定全部传递依赖；使用 `uv sync --locked --extra cuda --group dev` 安装。升级头文件后 Cargo 会重新编译原生 adapter。CUDA KV 写入使用单个向量化 kernel 同时写 K/V，支持 int32/int64 位置及 packed QKV stride；普通 RMSNorm 在满足对齐条件时直接复用 FlashInfer 官方内核并传入行 stride；残差 RMSNorm 同样直接复用 FlashInfer；QK Norm 和 KV store 的正常布局移植原版 SGLang 设备内核，保留 ATen 薄适配层，特殊布局使用通用 fallback。上游源码、许可证与移植范围见 `third_party/sglang/README.md`。
+参考 SGLang 环境的 FlashInfer 版本固定为 `0.6.18`，由 Linux 的 `cuda` extra 声明，仓库顶层的 `../uv.lock` 锁定传递依赖。安装命令见上文。升级头文件后 Cargo 会重新编译原生 adapter。CUDA KV 写入使用单个向量化 kernel 同时写 K/V，支持 int32/int64 位置及 packed QKV stride；普通 RMSNorm 在满足对齐条件时直接复用 FlashInfer 官方内核并传入行 stride；残差 RMSNorm 同样直接复用 FlashInfer；QK Norm 和 KV store 的正常布局移植原版 SGLang 设备内核，保留 ATen 薄适配层，特殊布局使用通用 fallback。上游源码、许可证与移植范围见 `third_party/sglang/README.md`。
 
-在 Linux CUDA 环境中，可以将 `--attention-backend flashinfer` 用于 BF16/FP16、head_dim=128 的模型。构建时需要在 `VENV_DIR` 指向的环境中安装带 CUDA 头文件的 `flashinfer-python` 和与 `tch` 一致的 PyTorch/libtorch。构建脚本从 FlashInfer 包中编译 CUDA 内核；服务运行时不加载 Python。默认编译目标为 A100（sm_80），其他架构可设置 `FLASHINFER_CUDA_ARCH`。FlashInfer 后端的 decode 直接使用现有 KV cache 的分页视图、页表和请求实际长度，prefill 无缓存前缀时使用 FlashInfer ragged KV，有前缀时使用 paged KV，避免 SDPA 的 padding、逐层缓存 gather 和显式注意力 mask。decode 支持完整 CUDA Graph 捕获与回放；prefill 支持在 attention 边界分段的 CUDA Graph，attention 与分页规划仍以 eager 执行。每个捕获批量独立持有地址固定的 FlashInfer plan、页索引与 workspace，回放前在图外更新分页规划。batch padding 行使用永久保留的合法 KV 第 0 页。
+在 Linux CUDA 环境中，可以将 `--attention-backend flashinfer` 用于 BF16/FP16、head_dim=128 的模型。构建时需要在 `VENV_DIR` 指向的环境中安装带 CUDA 头文件的 `flashinfer-python` 和与 `tch` 一致的 PyTorch/libtorch。构建脚本从 FlashInfer 包中编译 CUDA 内核；服务运行时不加载 Python。默认由 PyTorch 查询当前 GPU 的计算能力。构建时 GPU 不可见或需要指定目标时，设置 `FLASHINFER_CUDA_ARCH`，例如 RTX 5070 使用 `120`。FlashInfer 后端的 decode 直接使用现有 KV cache 的分页视图、页表和请求实际长度，prefill 无缓存前缀时使用 FlashInfer ragged KV，有前缀时使用 paged KV，避免 SDPA 的 padding、逐层缓存 gather 和显式注意力 mask。decode 支持完整 CUDA Graph 捕获与回放；prefill 支持在 attention 边界分段的 CUDA Graph，attention 与分页规划仍以 eager 执行。每个捕获批量独立持有地址固定的 FlashInfer plan、页索引与 workspace，回放前在图外更新分页规划。batch padding 行使用永久保留的合法 KV 第 0 页。
 
 ```bash
 VENV_DIR=/path/to/cuda-venv ./scripts/run-server.sh \
@@ -132,9 +134,9 @@ curl -N http://127.0.0.1:8000/v1/chat/completions \
 
 ```bash
 # Linux CUDA 环境；macOS / CPU 环境去掉 --extra cuda
-uv sync --locked --extra cuda --group dev
+uv sync --project .. --locked --all-packages --extra cuda --group dev
 SGLANG_E2E_BASE_URL=http://127.0.0.1:8000/v1 \
-  uv run --locked --extra cuda --group dev python -m unittest discover -s tests -p 'test_*.py' -v
+  uv run --project .. --no-sync python -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
 聊天接口支持 `max_completion_tokens` 和 `max_tokens`；两者同时提供时优先使用非空的 `max_completion_tokens`。新字段缺省或为 `null` 时使用 `max_tokens`，两者均未指定时默认生成上限为 1024。输出长度包含思考内容对应的 tokens，流式与非流式请求使用相同上限。

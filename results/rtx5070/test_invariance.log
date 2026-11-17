@@ -1,0 +1,3 @@
+L=517 hq=16 hkv=8: PI err mean 5.775e-04 max 8.729e-03 | FlashInfer err mean 5.775e-04 max 8.729e-03 | bf16(exact) err mean 5.142e-04
+L=2049 hq=16 hkv=8: PI err mean 4.436e-04 max 8.404e-03 | FlashInfer err mean 4.565e-04 max 8.404e-03 | bf16(exact) err mean 4.013e-04
+checks failed: 0 []

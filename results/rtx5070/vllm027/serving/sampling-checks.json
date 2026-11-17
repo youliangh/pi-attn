@@ -1,0 +1,1541 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "random",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "ties",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.5,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 1024,
+      "case": "threshold",
+      "top_k": 1024,
+      "top_p": 0.999,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "random",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "ties",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 50,
+      "top_p": 0.95,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 1,
+      "top_p": 1.0,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.5,
+      "batch": 16,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 1,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 2,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 3,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 4,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 7,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 8,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 9,
+      "mismatches": 0
+    },
+    {
+      "vocab": 151936,
+      "case": "threshold",
+      "top_k": 151936,
+      "top_p": 0.999,
+      "batch": 16,
+      "mismatches": 0
+    }
+  ]
+}

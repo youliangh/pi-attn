@@ -1,0 +1,48 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "width": 128,
+      "weight": true,
+      "unwrapped_eager_compile_mismatches": 1,
+      "wrapped_eager_compile_mismatches": 0,
+      "batch_mismatches": 0
+    },
+    {
+      "width": 128,
+      "weight": false,
+      "unwrapped_eager_compile_mismatches": 2,
+      "wrapped_eager_compile_mismatches": 0,
+      "batch_mismatches": 0
+    },
+    {
+      "width": 1024,
+      "weight": true,
+      "unwrapped_eager_compile_mismatches": 4,
+      "wrapped_eager_compile_mismatches": 0,
+      "batch_mismatches": 0
+    },
+    {
+      "width": 1024,
+      "weight": false,
+      "unwrapped_eager_compile_mismatches": 0,
+      "wrapped_eager_compile_mismatches": 0,
+      "batch_mismatches": 0
+    },
+    {
+      "width": 2048,
+      "weight": true,
+      "unwrapped_eager_compile_mismatches": 12,
+      "wrapped_eager_compile_mismatches": 0,
+      "batch_mismatches": 0
+    },
+    {
+      "width": 2048,
+      "weight": false,
+      "unwrapped_eager_compile_mismatches": 0,
+      "wrapped_eager_compile_mismatches": 0,
+      "batch_mismatches": 0
+    }
+  ],
+  "residual_mismatches": 0
+}
