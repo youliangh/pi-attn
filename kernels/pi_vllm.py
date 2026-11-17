@@ -1,16 +1,18 @@
-"""PI-Attn's row-invariant GEMM as the dense projections of vLLM 0.17.1's batch-invariant mode.
+"""PI-Attn's row-invariant GEMM for vLLM 0.17.1 and 0.27.0 batch-invariant projections.
 
-With VLLM_BATCH_INVARIANT=1 on sm_80/sm_89, vLLM routes aten::mm, addmm, matmul and linear to one Triton kernel
+With VLLM_BATCH_INVARIANT=1, vLLM 0.27.0's BF16 linear and LM head explicitly call one Triton kernel
 (batch_invariant.matmul_persistent: 128x128x64 tiles, no split-K), which keeps each output row independent of the
 batch but runs a batch of 1 through a 128-row tile. install() replaces that function: a projection y = x W^T
 (bf16, W [N, K] contiguous with K % 64 == 0 and N % 32 == 0, no bias) runs the engine's GEMM (pi_launch.cu: fixed k
 order per output element, tile tuned per weight shape and M bucket; every tile gives the same bits), anything else
-runs vLLM's kernel as before. STATS counts eager calls by path ('pi', or why vLLM's kernel ran); code torch.compile
+runs vLLM's kernel as before (or raises with PI_VLLM_STRICT=1). ATen mm on SM120 has a separate cuBLASLt
+dispatch; it is not the model's linear path. STATS counts eager calls by path ('pi', or why vLLM's kernel ran); code torch.compile
 traces is not counted, so selfcheck also reports the weight shapes the PI GEMM ran (shapes()).
 The bits differ from vLLM's kernel's (a different, equally batch-invariant k order).
 usage: from the engine process, after `import vllm` and before the model's first forward: pi_vllm.install()."""
-import glob
+import importlib.metadata
 import os
+from pathlib import Path
 
 import torch
 
@@ -21,16 +23,21 @@ _ext = None
 
 
 def ext():
-    """The extension, JIT-built for the local GPU (CUTLASS headers from the engine venv's FlashInfer, as test_gemm)."""
+    """JIT-build for the local GPU with the FlashInfer CUTLASS headers for this workspace."""
     global _ext
     if _ext is None:
         from torch.utils.cpp_extension import load
         major, minor = torch.cuda.get_device_capability()
-        root = os.path.join(HERE, '..', 'env', 'venv', 'lib')
-        cutlass = glob.glob(os.path.join(root, 'python3*', 'site-packages', 'flashinfer', 'data', 'cutlass', 'include'))
-        assert cutlass, 'CUTLASS headers not found under env/venv (FlashInfer)'
+        if importlib.metadata.version('vllm') == '0.17.1':
+            # The legacy experiments use the engine venv's pinned CUTLASS headers.
+            lib = Path(HERE).parent / 'env' / 'venv' / 'lib'
+            cutlass = next(lib.glob('python3*/site-packages/flashinfer/data/cutlass/include'), None)
+        else:
+            cutlass = importlib.metadata.distribution('flashinfer-python').locate_file('flashinfer/data/cutlass/include')
+        if cutlass is None or not cutlass.is_dir():
+            raise RuntimeError('CUTLASS headers not found for the PI GEMM extension')
         _ext = load(name=f'pi_vllm_sm{major}{minor}', sources=[os.path.join(HERE, 'pi_vllm_torch.cu')],
-                    extra_include_paths=[ENGINE_PI, cutlass[0]],
+                    extra_include_paths=[ENGINE_PI, str(cutlass)],
                     extra_cuda_cflags=['-O3', '-std=c++17', '--expt-relaxed-constexpr',
                                        f'-gencode=arch=compute_{major}{minor},code=sm_{major}{minor}'],
                     build_directory=os.environ.get('PI_ATTN_BUILD_DIR'))
@@ -72,11 +79,23 @@ def _reason(a, b, bias):
 def install():
     """Route vLLM's batch-invariant matmuls to the PI GEMM (see the module docstring)."""
     from vllm.model_executor.layers import batch_invariant as bi
-    assert bi.vllm_is_batch_invariant(), 'PI GEMM in vLLM replaces the batch-invariant mode kernel: set VLLM_BATCH_INVARIANT=1'
+    version = importlib.metadata.version('vllm')
+    if version == '0.17.1':
+        enabled = bi.vllm_is_batch_invariant()
+    elif version == '0.27.0':
+        from vllm import envs
+        enabled = envs.VLLM_BATCH_INVARIANT
+    else:
+        raise RuntimeError(f'Unsupported vLLM version {version} for PI GEMM')
+    if not enabled:
+        raise RuntimeError('PI GEMM requires VLLM_BATCH_INVARIANT=1')
     if getattr(bi.matmul_persistent, 'pi_gemm', False):
         return
     vllm_mm = bi.matmul_persistent
-    ext()                                                            # build before the model compiles
+    if version == '0.17.1':
+        ext()  # Legacy GDN scripts build in the engine process before torch.compile.
+    # The 0.27.0 plugin also registers in the API process. Its worker preloads
+    # the extension after init_device.
 
     def matmul_persistent(a, b, bias=None):
         why = _reason(a, b, bias)
@@ -85,6 +104,8 @@ def install():
             STATS[key] = STATS.get(key, 0) + 1
         if why is None:
             return linear(a, b.t())
+        if os.environ.get('PI_VLLM_STRICT') == '1':
+            raise RuntimeError(f'Unsupported PI model projection: {why}')
         return vllm_mm(a, b, bias=bias)
 
     matmul_persistent.pi_gemm = True
